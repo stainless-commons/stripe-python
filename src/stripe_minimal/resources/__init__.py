@@ -8,14 +8,6 @@ from .prices import (
     PricesResourceWithStreamingResponse,
     AsyncPricesResourceWithStreamingResponse,
 )
-from .account import (
-    AccountResource,
-    AsyncAccountResource,
-    AccountResourceWithRawResponse,
-    AsyncAccountResourceWithRawResponse,
-    AccountResourceWithStreamingResponse,
-    AsyncAccountResourceWithStreamingResponse,
-)
 from .balance import (
     BalanceResource,
     AsyncBalanceResource,
@@ -39,6 +31,14 @@ from .refunds import (
     AsyncRefundsResourceWithRawResponse,
     RefundsResourceWithStreamingResponse,
     AsyncRefundsResourceWithStreamingResponse,
+)
+from .accounts import (
+    AccountsResource,
+    AsyncAccountsResource,
+    AccountsResourceWithRawResponse,
+    AsyncAccountsResourceWithRawResponse,
+    AccountsResourceWithStreamingResponse,
+    AsyncAccountsResourceWithStreamingResponse,
 )
 from .disputes import (
     DisputesResource,
@@ -106,12 +106,12 @@ from .payment_intents import (
 )
 
 __all__ = [
-    "AccountResource",
-    "AsyncAccountResource",
-    "AccountResourceWithRawResponse",
-    "AsyncAccountResourceWithRawResponse",
-    "AccountResourceWithStreamingResponse",
-    "AsyncAccountResourceWithStreamingResponse",
+    "AccountsResource",
+    "AsyncAccountsResource",
+    "AccountsResourceWithRawResponse",
+    "AsyncAccountsResourceWithRawResponse",
+    "AccountsResourceWithStreamingResponse",
+    "AsyncAccountsResourceWithStreamingResponse",
     "BalanceResource",
     "AsyncBalanceResource",
     "BalanceResourceWithRawResponse",

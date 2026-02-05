@@ -34,10 +34,10 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         prices,
-        account,
         balance,
         coupons,
         refunds,
+        accounts,
         disputes,
         invoices,
         products,
@@ -48,10 +48,10 @@ if TYPE_CHECKING:
         payment_intents,
     )
     from .resources.prices import PricesResource, AsyncPricesResource
-    from .resources.account import AccountResource, AsyncAccountResource
     from .resources.balance import BalanceResource, AsyncBalanceResource
     from .resources.coupons import CouponsResource, AsyncCouponsResource
     from .resources.refunds import RefundsResource, AsyncRefundsResource
+    from .resources.accounts import AccountsResource, AsyncAccountsResource
     from .resources.disputes import DisputesResource, AsyncDisputesResource
     from .resources.invoices import InvoicesResource, AsyncInvoicesResource
     from .resources.products import ProductsResource, AsyncProductsResource
@@ -116,10 +116,10 @@ class Stripe(SyncAPIClient):
         )
 
     @cached_property
-    def account(self) -> AccountResource:
-        from .resources.account import AccountResource
+    def accounts(self) -> AccountsResource:
+        from .resources.accounts import AccountsResource
 
-        return AccountResource(self)
+        return AccountsResource(self)
 
     @cached_property
     def balance(self) -> BalanceResource:
@@ -369,10 +369,10 @@ class AsyncStripe(AsyncAPIClient):
         )
 
     @cached_property
-    def account(self) -> AsyncAccountResource:
-        from .resources.account import AsyncAccountResource
+    def accounts(self) -> AsyncAccountsResource:
+        from .resources.accounts import AsyncAccountsResource
 
-        return AsyncAccountResource(self)
+        return AsyncAccountsResource(self)
 
     @cached_property
     def balance(self) -> AsyncBalanceResource:
@@ -577,10 +577,10 @@ class StripeWithRawResponse:
         self._client = client
 
     @cached_property
-    def account(self) -> account.AccountResourceWithRawResponse:
-        from .resources.account import AccountResourceWithRawResponse
+    def accounts(self) -> accounts.AccountsResourceWithRawResponse:
+        from .resources.accounts import AccountsResourceWithRawResponse
 
-        return AccountResourceWithRawResponse(self._client.account)
+        return AccountsResourceWithRawResponse(self._client.accounts)
 
     @cached_property
     def balance(self) -> balance.BalanceResourceWithRawResponse:
@@ -662,10 +662,10 @@ class AsyncStripeWithRawResponse:
         self._client = client
 
     @cached_property
-    def account(self) -> account.AsyncAccountResourceWithRawResponse:
-        from .resources.account import AsyncAccountResourceWithRawResponse
+    def accounts(self) -> accounts.AsyncAccountsResourceWithRawResponse:
+        from .resources.accounts import AsyncAccountsResourceWithRawResponse
 
-        return AsyncAccountResourceWithRawResponse(self._client.account)
+        return AsyncAccountsResourceWithRawResponse(self._client.accounts)
 
     @cached_property
     def balance(self) -> balance.AsyncBalanceResourceWithRawResponse:
@@ -747,10 +747,10 @@ class StripeWithStreamedResponse:
         self._client = client
 
     @cached_property
-    def account(self) -> account.AccountResourceWithStreamingResponse:
-        from .resources.account import AccountResourceWithStreamingResponse
+    def accounts(self) -> accounts.AccountsResourceWithStreamingResponse:
+        from .resources.accounts import AccountsResourceWithStreamingResponse
 
-        return AccountResourceWithStreamingResponse(self._client.account)
+        return AccountsResourceWithStreamingResponse(self._client.accounts)
 
     @cached_property
     def balance(self) -> balance.BalanceResourceWithStreamingResponse:
@@ -832,10 +832,10 @@ class AsyncStripeWithStreamedResponse:
         self._client = client
 
     @cached_property
-    def account(self) -> account.AsyncAccountResourceWithStreamingResponse:
-        from .resources.account import AsyncAccountResourceWithStreamingResponse
+    def accounts(self) -> accounts.AsyncAccountsResourceWithStreamingResponse:
+        from .resources.accounts import AsyncAccountsResourceWithStreamingResponse
 
-        return AsyncAccountResourceWithStreamingResponse(self._client.account)
+        return AsyncAccountsResourceWithStreamingResponse(self._client.accounts)
 
     @cached_property
     def balance(self) -> balance.AsyncBalanceResourceWithStreamingResponse:

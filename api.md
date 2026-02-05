@@ -49,7 +49,7 @@ from stripe_minimal.types import (
 )
 ```
 
-# Account
+# Accounts
 
 Types:
 
@@ -65,7 +65,7 @@ from stripe_minimal.types import (
 
 Methods:
 
-- <code title="get /v1/account">client.account.<a href="./src/stripe_minimal/resources/account.py">retrieve</a>(\*\*<a href="src/stripe_minimal/types/account_retrieve_params.py">params</a>) -> <a href="./src/stripe_minimal/types/account.py">Account</a></code>
+- <code title="get /v1/account">client.accounts.<a href="./src/stripe_minimal/resources/accounts.py">retrieve</a>(\*\*<a href="src/stripe_minimal/types/account_retrieve_params.py">params</a>) -> <a href="./src/stripe_minimal/types/account.py">Account</a></code>
 
 # Balance
 

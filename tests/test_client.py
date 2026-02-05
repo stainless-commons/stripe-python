@@ -861,7 +861,7 @@ class TestStripe:
         respx_mock.get("/v1/account").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.account.with_streaming_response.retrieve().__enter__()
+            client.accounts.with_streaming_response.retrieve().__enter__()
 
         assert _get_open_connections(client) == 0
 
@@ -871,7 +871,7 @@ class TestStripe:
         respx_mock.get("/v1/account").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.account.with_streaming_response.retrieve().__enter__()
+            client.accounts.with_streaming_response.retrieve().__enter__()
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -900,7 +900,7 @@ class TestStripe:
 
         respx_mock.get("/v1/account").mock(side_effect=retry_handler)
 
-        response = client.account.with_raw_response.retrieve()
+        response = client.accounts.with_raw_response.retrieve()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -924,7 +924,7 @@ class TestStripe:
 
         respx_mock.get("/v1/account").mock(side_effect=retry_handler)
 
-        response = client.account.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.accounts.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -947,7 +947,7 @@ class TestStripe:
 
         respx_mock.get("/v1/account").mock(side_effect=retry_handler)
 
-        response = client.account.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.accounts.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1768,7 +1768,7 @@ class TestAsyncStripe:
         respx_mock.get("/v1/account").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.account.with_streaming_response.retrieve().__aenter__()
+            await async_client.accounts.with_streaming_response.retrieve().__aenter__()
 
         assert _get_open_connections(async_client) == 0
 
@@ -1778,7 +1778,7 @@ class TestAsyncStripe:
         respx_mock.get("/v1/account").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.account.with_streaming_response.retrieve().__aenter__()
+            await async_client.accounts.with_streaming_response.retrieve().__aenter__()
         assert _get_open_connections(async_client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1807,7 +1807,7 @@ class TestAsyncStripe:
 
         respx_mock.get("/v1/account").mock(side_effect=retry_handler)
 
-        response = await client.account.with_raw_response.retrieve()
+        response = await client.accounts.with_raw_response.retrieve()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1831,7 +1831,7 @@ class TestAsyncStripe:
 
         respx_mock.get("/v1/account").mock(side_effect=retry_handler)
 
-        response = await client.account.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.accounts.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1854,7 +1854,7 @@ class TestAsyncStripe:
 
         respx_mock.get("/v1/account").mock(side_effect=retry_handler)
 
-        response = await client.account.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.accounts.with_raw_response.retrieve(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 

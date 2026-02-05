@@ -44,7 +44,7 @@ client = Stripe(
     api_key=os.environ.get("STRIPE_SECRET_KEY"),  # This is the default and can be omitted
 )
 
-account = client.account.retrieve()
+account = client.accounts.retrieve()
 print(account.id)
 ```
 
@@ -68,7 +68,7 @@ client = AsyncStripe(
 
 
 async def main() -> None:
-    account = await client.account.retrieve()
+    account = await client.accounts.retrieve()
     print(account.id)
 
 
@@ -102,7 +102,7 @@ async def main() -> None:
         api_key=os.environ.get("STRIPE_SECRET_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        account = await client.account.retrieve()
+        account = await client.accounts.retrieve()
         print(account.id)
 
 
@@ -149,7 +149,7 @@ from stripe_minimal import Stripe
 client = Stripe()
 
 try:
-    client.account.retrieve()
+    client.accounts.retrieve()
 except stripe_minimal.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -192,7 +192,7 @@ client = Stripe(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).account.retrieve()
+client.with_options(max_retries=5).accounts.retrieve()
 ```
 
 ### Timeouts
@@ -215,7 +215,7 @@ client = Stripe(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).account.retrieve()
+client.with_options(timeout=5.0).accounts.retrieve()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -256,10 +256,10 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from stripe_minimal import Stripe
 
 client = Stripe()
-response = client.account.with_raw_response.retrieve()
+response = client.accounts.with_raw_response.retrieve()
 print(response.headers.get('X-My-Header'))
 
-account = response.parse()  # get the object that `account.retrieve()` would have returned
+account = response.parse()  # get the object that `accounts.retrieve()` would have returned
 print(account.id)
 ```
 
@@ -274,7 +274,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.account.with_streaming_response.retrieve() as response:
+with client.accounts.with_streaming_response.retrieve() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
