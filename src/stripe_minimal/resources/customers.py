@@ -18,9 +18,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.customer import Customer
-from ..types.customer_list_response import CustomerListResponse
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
@@ -194,7 +194,7 @@ class CustomersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerListResponse:
+    ) -> SyncMyCursorIDPage[Customer]:
         """<p>Returns a list of your customers.
 
         The customers are returned sorted by creation date, with the most recent customers appearing first.</p>
@@ -232,8 +232,9 @@ class CustomersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v1/customers",
+            page=SyncMyCursorIDPage[Customer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -252,7 +253,7 @@ class CustomersResource(SyncAPIResource):
                     customer_list_params.CustomerListParams,
                 ),
             ),
-            cast_to=CustomerListResponse,
+            model=Customer,
         )
 
 
@@ -409,7 +410,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=Customer,
         )
 
-    async def list(
+    def list(
         self,
         *,
         created: customer_list_params.Created | Omit = omit,
@@ -425,7 +426,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerListResponse:
+    ) -> AsyncPaginator[Customer, AsyncMyCursorIDPage[Customer]]:
         """<p>Returns a list of your customers.
 
         The customers are returned sorted by creation date, with the most recent customers appearing first.</p>
@@ -463,14 +464,15 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v1/customers",
+            page=AsyncMyCursorIDPage[Customer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "created": created,
                         "email": email,
@@ -483,7 +485,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                     customer_list_params.CustomerListParams,
                 ),
             ),
-            cast_to=CustomerListResponse,
+            model=Customer,
         )
 
 

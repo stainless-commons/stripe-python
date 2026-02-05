@@ -18,9 +18,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.invoice import Invoice
-from ..types.invoice_list_response import InvoiceListResponse
 
 __all__ = ["InvoicesResource", "AsyncInvoicesResource"]
 
@@ -289,7 +289,7 @@ class InvoicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InvoiceListResponse:
+    ) -> SyncMyCursorIDPage[Invoice]:
         """<p>You can list all invoices, or list the invoices for a specific customer.
 
         The invoices are returned sorted by creation date, with the most recently created invoices appearing first.</p>
@@ -334,8 +334,9 @@ class InvoicesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v1/invoices",
+            page=SyncMyCursorIDPage[Invoice],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -358,7 +359,7 @@ class InvoicesResource(SyncAPIResource):
                     invoice_list_params.InvoiceListParams,
                 ),
             ),
-            cast_to=InvoiceListResponse,
+            model=Invoice,
         )
 
     def finalize(
@@ -655,7 +656,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
             cast_to=Invoice,
         )
 
-    async def list(
+    def list(
         self,
         *,
         collection_method: Literal["charge_automatically", "send_invoice"] | Omit = omit,
@@ -675,7 +676,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> InvoiceListResponse:
+    ) -> AsyncPaginator[Invoice, AsyncMyCursorIDPage[Invoice]]:
         """<p>You can list all invoices, or list the invoices for a specific customer.
 
         The invoices are returned sorted by creation date, with the most recently created invoices appearing first.</p>
@@ -720,14 +721,15 @@ class AsyncInvoicesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v1/invoices",
+            page=AsyncMyCursorIDPage[Invoice],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "collection_method": collection_method,
                         "created": created,
@@ -744,7 +746,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
                     invoice_list_params.InvoiceListParams,
                 ),
             ),
-            cast_to=InvoiceListResponse,
+            model=Invoice,
         )
 
     async def finalize(

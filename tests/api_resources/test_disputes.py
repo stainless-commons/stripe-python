@@ -9,7 +9,8 @@ import pytest
 
 from tests.utils import assert_matches_type
 from stripe_minimal import Stripe, AsyncStripe
-from stripe_minimal.types import Dispute, DisputeListResponse
+from stripe_minimal.types import Dispute
+from stripe_minimal.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -144,7 +145,7 @@ class TestDisputes:
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         dispute = client.disputes.list()
-        assert_matches_type(DisputeListResponse, dispute, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -163,7 +164,7 @@ class TestDisputes:
             payment_intent="payment_intent",
             starting_after="starting_after",
         )
-        assert_matches_type(DisputeListResponse, dispute, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -173,7 +174,7 @@ class TestDisputes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dispute = response.parse()
-        assert_matches_type(DisputeListResponse, dispute, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -183,7 +184,7 @@ class TestDisputes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dispute = response.parse()
-            assert_matches_type(DisputeListResponse, dispute, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -320,7 +321,7 @@ class TestAsyncDisputes:
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.list()
-        assert_matches_type(DisputeListResponse, dispute, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -339,7 +340,7 @@ class TestAsyncDisputes:
             payment_intent="payment_intent",
             starting_after="starting_after",
         )
-        assert_matches_type(DisputeListResponse, dispute, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -349,7 +350,7 @@ class TestAsyncDisputes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dispute = await response.parse()
-        assert_matches_type(DisputeListResponse, dispute, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -359,6 +360,6 @@ class TestAsyncDisputes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dispute = await response.parse()
-            assert_matches_type(DisputeListResponse, dispute, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
         assert cast(Any, response.is_closed) is True

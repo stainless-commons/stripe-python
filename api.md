@@ -84,13 +84,13 @@ Methods:
 Types:
 
 ```python
-from stripe_minimal.types import Coupon, CouponListResponse
+from stripe_minimal.types import Coupon
 ```
 
 Methods:
 
 - <code title="post /v1/coupons">client.coupons.<a href="./src/stripe_minimal/resources/coupons.py">create</a>(\*\*<a href="src/stripe_minimal/types/coupon_create_params.py">params</a>) -> <a href="./src/stripe_minimal/types/coupon.py">Coupon</a></code>
-- <code title="get /v1/coupons">client.coupons.<a href="./src/stripe_minimal/resources/coupons.py">list</a>(\*\*<a href="src/stripe_minimal/types/coupon_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/coupon_list_response.py">CouponListResponse</a></code>
+- <code title="get /v1/coupons">client.coupons.<a href="./src/stripe_minimal/resources/coupons.py">list</a>(\*\*<a href="src/stripe_minimal/types/coupon_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/coupon.py">SyncMyCursorIDPage[Coupon]</a></code>
 
 # Customers
 
@@ -106,14 +106,13 @@ from stripe_minimal.types import (
     PromotionCode,
     TaxID,
     TaxIDsOwner,
-    CustomerListResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /v1/customers">client.customers.<a href="./src/stripe_minimal/resources/customers.py">create</a>(\*\*<a href="src/stripe_minimal/types/customer_create_params.py">params</a>) -> <a href="./src/stripe_minimal/types/customer.py">Customer</a></code>
-- <code title="get /v1/customers">client.customers.<a href="./src/stripe_minimal/resources/customers.py">list</a>(\*\*<a href="src/stripe_minimal/types/customer_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/customer_list_response.py">CustomerListResponse</a></code>
+- <code title="get /v1/customers">client.customers.<a href="./src/stripe_minimal/resources/customers.py">list</a>(\*\*<a href="src/stripe_minimal/types/customer_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/customer.py">SyncMyCursorIDPage[Customer]</a></code>
 
 # Disputes
 
@@ -161,14 +160,13 @@ from stripe_minimal.types import (
     Payout,
     Topup,
     Transfer,
-    DisputeListResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /v1/disputes/{dispute}">client.disputes.<a href="./src/stripe_minimal/resources/disputes.py">update</a>(dispute, \*\*<a href="src/stripe_minimal/types/dispute_update_params.py">params</a>) -> <a href="./src/stripe_minimal/types/dispute.py">Dispute</a></code>
-- <code title="get /v1/disputes">client.disputes.<a href="./src/stripe_minimal/resources/disputes.py">list</a>(\*\*<a href="src/stripe_minimal/types/dispute_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/dispute_list_response.py">DisputeListResponse</a></code>
+- <code title="get /v1/disputes">client.disputes.<a href="./src/stripe_minimal/resources/disputes.py">list</a>(\*\*<a href="src/stripe_minimal/types/dispute_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/dispute.py">SyncMyCursorIDPage[Dispute]</a></code>
 
 # Invoices
 
@@ -208,14 +206,13 @@ from stripe_minimal.types import (
     SepaDebitGeneratedFrom,
     ShippingRateDeliveryEstimateBound,
     TaxRate,
-    InvoiceListResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /v1/invoices">client.invoices.<a href="./src/stripe_minimal/resources/invoices.py">create</a>(\*\*<a href="src/stripe_minimal/types/invoice_create_params.py">params</a>) -> <a href="./src/stripe_minimal/types/invoice.py">Invoice</a></code>
-- <code title="get /v1/invoices">client.invoices.<a href="./src/stripe_minimal/resources/invoices.py">list</a>(\*\*<a href="src/stripe_minimal/types/invoice_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/invoice_list_response.py">InvoiceListResponse</a></code>
+- <code title="get /v1/invoices">client.invoices.<a href="./src/stripe_minimal/resources/invoices.py">list</a>(\*\*<a href="src/stripe_minimal/types/invoice_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/invoice.py">SyncMyCursorIDPage[Invoice]</a></code>
 - <code title="post /v1/invoices/{invoice}/finalize">client.invoices.<a href="./src/stripe_minimal/resources/invoices.py">finalize</a>(invoice, \*\*<a href="src/stripe_minimal/types/invoice_finalize_params.py">params</a>) -> <a href="./src/stripe_minimal/types/invoice.py">Invoice</a></code>
 
 # Invoiceitems
@@ -255,39 +252,38 @@ from stripe_minimal.types import (
     PaymentMethodOptionsCardPresentRouting,
     PaymentTransferData,
     Review,
-    PaymentIntentListResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /v1/payment_intents">client.payment_intents.<a href="./src/stripe_minimal/resources/payment_intents.py">list</a>(\*\*<a href="src/stripe_minimal/types/payment_intent_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/payment_intent_list_response.py">PaymentIntentListResponse</a></code>
+- <code title="get /v1/payment_intents">client.payment_intents.<a href="./src/stripe_minimal/resources/payment_intents.py">list</a>(\*\*<a href="src/stripe_minimal/types/payment_intent_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/payment_intent.py">SyncMyCursorIDPage[PaymentIntent]</a></code>
 
 # Prices
 
 Types:
 
 ```python
-from stripe_minimal.types import Price, PriceListResponse
+from stripe_minimal.types import Price
 ```
 
 Methods:
 
 - <code title="post /v1/prices">client.prices.<a href="./src/stripe_minimal/resources/prices.py">create</a>(\*\*<a href="src/stripe_minimal/types/price_create_params.py">params</a>) -> <a href="./src/stripe_minimal/types/price.py">Price</a></code>
-- <code title="get /v1/prices">client.prices.<a href="./src/stripe_minimal/resources/prices.py">list</a>(\*\*<a href="src/stripe_minimal/types/price_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/price_list_response.py">PriceListResponse</a></code>
+- <code title="get /v1/prices">client.prices.<a href="./src/stripe_minimal/resources/prices.py">list</a>(\*\*<a href="src/stripe_minimal/types/price_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/price.py">SyncMyCursorIDPage[Price]</a></code>
 
 # Products
 
 Types:
 
 ```python
-from stripe_minimal.types import Product, ProductListResponse
+from stripe_minimal.types import Product
 ```
 
 Methods:
 
 - <code title="post /v1/products">client.products.<a href="./src/stripe_minimal/resources/products.py">create</a>(\*\*<a href="src/stripe_minimal/types/product_create_params.py">params</a>) -> <a href="./src/stripe_minimal/types/product.py">Product</a></code>
-- <code title="get /v1/products">client.products.<a href="./src/stripe_minimal/resources/products.py">list</a>(\*\*<a href="src/stripe_minimal/types/product_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/product_list_response.py">ProductListResponse</a></code>
+- <code title="get /v1/products">client.products.<a href="./src/stripe_minimal/resources/products.py">list</a>(\*\*<a href="src/stripe_minimal/types/product_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/product.py">SyncMyCursorIDPage[Product]</a></code>
 
 # Refunds
 
@@ -334,12 +330,11 @@ from stripe_minimal.types import (
     SubscriptionInvoiceSettings,
     SubscriptionItem,
     SubscriptionTransferData,
-    SubscriptionListResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /v1/subscriptions/{subscription_exposed_id}">client.subscriptions.<a href="./src/stripe_minimal/resources/subscriptions.py">update</a>(subscription_exposed_id, \*\*<a href="src/stripe_minimal/types/subscription_update_params.py">params</a>) -> <a href="./src/stripe_minimal/types/subscription.py">Subscription</a></code>
-- <code title="get /v1/subscriptions">client.subscriptions.<a href="./src/stripe_minimal/resources/subscriptions.py">list</a>(\*\*<a href="src/stripe_minimal/types/subscription_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/subscription_list_response.py">SubscriptionListResponse</a></code>
+- <code title="get /v1/subscriptions">client.subscriptions.<a href="./src/stripe_minimal/resources/subscriptions.py">list</a>(\*\*<a href="src/stripe_minimal/types/subscription_list_params.py">params</a>) -> <a href="./src/stripe_minimal/types/subscription.py">SyncMyCursorIDPage[Subscription]</a></code>
 - <code title="delete /v1/subscriptions/{subscription_exposed_id}">client.subscriptions.<a href="./src/stripe_minimal/resources/subscriptions.py">cancel</a>(subscription_exposed_id, \*\*<a href="src/stripe_minimal/types/subscription_cancel_params.py">params</a>) -> <a href="./src/stripe_minimal/types/subscription.py">Subscription</a></code>

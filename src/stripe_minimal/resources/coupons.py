@@ -18,9 +18,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.coupon import Coupon
-from ..types.coupon_list_response import CouponListResponse
 
 __all__ = ["CouponsResource", "AsyncCouponsResource"]
 
@@ -167,7 +167,7 @@ class CouponsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CouponListResponse:
+    ) -> SyncMyCursorIDPage[Coupon]:
         """
         <p>Returns a list of your coupons.</p>
 
@@ -199,8 +199,9 @@ class CouponsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v1/coupons",
+            page=SyncMyCursorIDPage[Coupon],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -217,7 +218,7 @@ class CouponsResource(SyncAPIResource):
                     coupon_list_params.CouponListParams,
                 ),
             ),
-            cast_to=CouponListResponse,
+            model=Coupon,
         )
 
 
@@ -349,7 +350,7 @@ class AsyncCouponsResource(AsyncAPIResource):
             cast_to=Coupon,
         )
 
-    async def list(
+    def list(
         self,
         *,
         created: coupon_list_params.Created | Omit = omit,
@@ -363,7 +364,7 @@ class AsyncCouponsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CouponListResponse:
+    ) -> AsyncPaginator[Coupon, AsyncMyCursorIDPage[Coupon]]:
         """
         <p>Returns a list of your coupons.</p>
 
@@ -395,14 +396,15 @@ class AsyncCouponsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v1/coupons",
+            page=AsyncMyCursorIDPage[Coupon],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "created": created,
                         "ending_before": ending_before,
@@ -413,7 +415,7 @@ class AsyncCouponsResource(AsyncAPIResource):
                     coupon_list_params.CouponListParams,
                 ),
             ),
-            cast_to=CouponListResponse,
+            model=Coupon,
         )
 
 
