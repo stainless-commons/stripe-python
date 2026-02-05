@@ -38,7 +38,7 @@ __all__ = [
     "CustomTextTermsOfServiceAcceptanceCustomTextPositionParam",
     "InvoiceCreation",
     "InvoiceCreationInvoiceData",
-    "InvoiceCreationInvoiceDataCustomFieldsUnionMember0",
+    "InvoiceCreationInvoiceDataCustomFieldsCustomFieldsList",
     "InvoiceCreationInvoiceDataIssuer",
     "InvoiceCreationInvoiceDataRenderingOptions",
     "InvoiceCreationInvoiceDataRenderingOptionsCheckoutRenderingOptionsParam",
@@ -483,7 +483,7 @@ class CustomText(TypedDict, total=False):
     terms_of_service_acceptance: CustomTextTermsOfServiceAcceptance
 
 
-class InvoiceCreationInvoiceDataCustomFieldsUnionMember0(TypedDict, total=False):
+class InvoiceCreationInvoiceDataCustomFieldsCustomFieldsList(TypedDict, total=False):
     name: Required[str]
 
     value: Required[str]
@@ -509,7 +509,7 @@ InvoiceCreationInvoiceDataRenderingOptions: TypeAlias = Union[
 class InvoiceCreationInvoiceData(TypedDict, total=False):
     account_tax_ids: Union[SequenceNotStr[str], Literal[""]]
 
-    custom_fields: Union[Iterable[InvoiceCreationInvoiceDataCustomFieldsUnionMember0], Literal[""]]
+    custom_fields: Union[Iterable[InvoiceCreationInvoiceDataCustomFieldsCustomFieldsList], Literal[""]]
 
     description: str
 

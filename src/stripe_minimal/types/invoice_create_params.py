@@ -11,8 +11,8 @@ __all__ = [
     "InvoiceCreateParams",
     "AutomaticTax",
     "AutomaticTaxLiability",
-    "CustomFieldsUnionMember0",
-    "DiscountsUnionMember0",
+    "CustomFieldsCustomFieldsList",
+    "DiscountsDiscountsList",
     "FromInvoice",
     "Issuer",
     "PaymentSettings",
@@ -101,7 +101,7 @@ class InvoiceCreateParams(TypedDict, total=False):
     Defaults to that of `customer` if not specified.
     """
 
-    custom_fields: Union[Iterable[CustomFieldsUnionMember0], Literal[""]]
+    custom_fields: Union[Iterable[CustomFieldsCustomFieldsList], Literal[""]]
     """A list of up to 4 custom fields to be displayed on the invoice."""
 
     customer: str
@@ -144,7 +144,7 @@ class InvoiceCreateParams(TypedDict, total=False):
     Often useful for displaying to users. Referenced as 'memo' in the Dashboard.
     """
 
-    discounts: Union[Iterable[DiscountsUnionMember0], Literal[""]]
+    discounts: Union[Iterable[DiscountsDiscountsList], Literal[""]]
     """The coupons and promotion codes to redeem into discounts for the invoice.
 
     If not specified, inherits the discount from the invoice's customer. Pass an
@@ -280,13 +280,13 @@ class AutomaticTax(TypedDict, total=False):
     liability: AutomaticTaxLiability
 
 
-class CustomFieldsUnionMember0(TypedDict, total=False):
+class CustomFieldsCustomFieldsList(TypedDict, total=False):
     name: Required[str]
 
     value: Required[str]
 
 
-class DiscountsUnionMember0(TypedDict, total=False):
+class DiscountsDiscountsList(TypedDict, total=False):
     coupon: str
 
     discount: str

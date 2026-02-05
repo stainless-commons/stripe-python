@@ -14,7 +14,7 @@ __all__ = [
     "CashBalance",
     "CashBalanceSettings",
     "InvoiceSettings",
-    "InvoiceSettingsCustomFieldsUnionMember0",
+    "InvoiceSettingsCustomFieldsCustomFieldsList",
     "InvoiceSettingsRenderingOptions",
     "InvoiceSettingsRenderingOptionsCustomerRenderingOptionsParam",
     "Shipping",
@@ -146,7 +146,7 @@ class CashBalance(TypedDict, total=False):
     settings: CashBalanceSettings
 
 
-class InvoiceSettingsCustomFieldsUnionMember0(TypedDict, total=False):
+class InvoiceSettingsCustomFieldsCustomFieldsList(TypedDict, total=False):
     name: Required[str]
 
     value: Required[str]
@@ -166,7 +166,7 @@ InvoiceSettingsRenderingOptions: TypeAlias = Union[
 class InvoiceSettings(TypedDict, total=False):
     """Default invoice settings for this customer."""
 
-    custom_fields: Union[Iterable[InvoiceSettingsCustomFieldsUnionMember0], Literal[""]]
+    custom_fields: Union[Iterable[InvoiceSettingsCustomFieldsCustomFieldsList], Literal[""]]
 
     default_payment_method: str
 
