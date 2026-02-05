@@ -7,7 +7,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
 
-__all__ = ["InvoiceitemCreateParams", "DiscountsUnionMember0", "Period", "PriceData", "Pricing"]
+__all__ = ["InvoiceitemCreateParams", "DiscountsDiscountsList", "Period", "PriceData", "Pricing"]
 
 
 class InvoiceitemCreateParams(TypedDict, total=False):
@@ -44,7 +44,7 @@ class InvoiceitemCreateParams(TypedDict, total=False):
     other invoice items.
     """
 
-    discounts: Union[Iterable[DiscountsUnionMember0], Literal[""]]
+    discounts: Union[Iterable[DiscountsDiscountsList], Literal[""]]
     """
     The coupons and promotion codes to redeem into discounts for the invoice item or
     invoice line item.
@@ -136,7 +136,7 @@ class InvoiceitemCreateParams(TypedDict, total=False):
     """
 
 
-class DiscountsUnionMember0(TypedDict, total=False):
+class DiscountsDiscountsList(TypedDict, total=False):
     coupon: str
 
     discount: str

@@ -20,13 +20,13 @@ __all__ = [
     "BillingThresholds",
     "BillingThresholdsBillingThresholdsParam",
     "CancellationDetails",
-    "DiscountsUnionMember0",
+    "DiscountsDiscountsList",
     "InvoiceSettings",
     "InvoiceSettingsIssuer",
     "Item",
     "ItemBillingThresholds",
     "ItemBillingThresholdsItemBillingThresholdsParam",
-    "ItemDiscountsUnionMember0",
+    "ItemDiscountsDiscountsList",
     "ItemPriceData",
     "ItemPriceDataRecurring",
     "PauseCollection",
@@ -170,7 +170,7 @@ class SubscriptionUpdateParams(TypedDict, total=False):
     rendering in Stripe surfaces and certain local payment methods UIs.
     """
 
-    discounts: Union[Iterable[DiscountsUnionMember0], Literal[""]]
+    discounts: Union[Iterable[DiscountsDiscountsList], Literal[""]]
     """The coupons to redeem into discounts for the subscription.
 
     If not specified or empty, inherits the discount from the subscription's
@@ -406,7 +406,7 @@ class CancellationDetails(TypedDict, total=False):
     ]
 
 
-class DiscountsUnionMember0(TypedDict, total=False):
+class DiscountsDiscountsList(TypedDict, total=False):
     coupon: str
 
     discount: str
@@ -435,7 +435,7 @@ class ItemBillingThresholdsItemBillingThresholdsParam(TypedDict, total=False):
 ItemBillingThresholds: TypeAlias = Union[ItemBillingThresholdsItemBillingThresholdsParam, Literal[""]]
 
 
-class ItemDiscountsUnionMember0(TypedDict, total=False):
+class ItemDiscountsDiscountsList(TypedDict, total=False):
     coupon: str
 
     discount: str
@@ -472,7 +472,7 @@ class Item(TypedDict, total=False):
 
     deleted: bool
 
-    discounts: Union[Iterable[ItemDiscountsUnionMember0], Literal[""]]
+    discounts: Union[Iterable[ItemDiscountsDiscountsList], Literal[""]]
 
     metadata: Union[Dict[str, str], Literal[""]]
 
