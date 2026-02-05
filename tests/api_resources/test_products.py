@@ -9,7 +9,8 @@ import pytest
 
 from tests.utils import assert_matches_type
 from stripe_minimal import Stripe, AsyncStripe
-from stripe_minimal.types import Product, ProductListResponse
+from stripe_minimal.types import Product
+from stripe_minimal.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -120,7 +121,7 @@ class TestProducts:
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         product = client.products.list()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Product], product, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -141,7 +142,7 @@ class TestProducts:
             starting_after="starting_after",
             url="url",
         )
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Product], product, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -151,7 +152,7 @@ class TestProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = response.parse()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Product], product, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -161,7 +162,7 @@ class TestProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = response.parse()
-            assert_matches_type(ProductListResponse, product, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[Product], product, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -274,7 +275,7 @@ class TestAsyncProducts:
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         product = await async_client.products.list()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Product], product, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -295,7 +296,7 @@ class TestAsyncProducts:
             starting_after="starting_after",
             url="url",
         )
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Product], product, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -305,7 +306,7 @@ class TestAsyncProducts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         product = await response.parse()
-        assert_matches_type(ProductListResponse, product, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Product], product, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -315,6 +316,6 @@ class TestAsyncProducts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             product = await response.parse()
-            assert_matches_type(ProductListResponse, product, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[Product], product, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -17,9 +17,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.product import Product
-from ..types.product_list_response import ProductListResponse
 
 __all__ = ["ProductsResource", "AsyncProductsResource"]
 
@@ -175,7 +175,7 @@ class ProductsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductListResponse:
+    ) -> SyncMyCursorIDPage[Product]:
         """<p>Returns a list of your products.
 
         The products are returned sorted by creation date, with the most recently created products appearing first.</p>
@@ -217,8 +217,9 @@ class ProductsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v1/products",
+            page=SyncMyCursorIDPage[Product],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +240,7 @@ class ProductsResource(SyncAPIResource):
                     product_list_params.ProductListParams,
                 ),
             ),
-            cast_to=ProductListResponse,
+            model=Product,
         )
 
 
@@ -376,7 +377,7 @@ class AsyncProductsResource(AsyncAPIResource):
             cast_to=Product,
         )
 
-    async def list(
+    def list(
         self,
         *,
         active: bool | Omit = omit,
@@ -394,7 +395,7 @@ class AsyncProductsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ProductListResponse:
+    ) -> AsyncPaginator[Product, AsyncMyCursorIDPage[Product]]:
         """<p>Returns a list of your products.
 
         The products are returned sorted by creation date, with the most recently created products appearing first.</p>
@@ -436,14 +437,15 @@ class AsyncProductsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v1/products",
+            page=AsyncMyCursorIDPage[Product],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "active": active,
                         "created": created,
@@ -458,7 +460,7 @@ class AsyncProductsResource(AsyncAPIResource):
                     product_list_params.ProductListParams,
                 ),
             ),
-            cast_to=ProductListResponse,
+            model=Product,
         )
 
 

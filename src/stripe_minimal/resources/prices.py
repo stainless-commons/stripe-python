@@ -18,9 +18,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 from ..types.price import Price
-from .._base_client import make_request_options
-from ..types.price_list_response import PriceListResponse
+from .._base_client import AsyncPaginator, make_request_options
 
 __all__ = ["PricesResource", "AsyncPricesResource"]
 
@@ -209,7 +209,7 @@ class PricesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PriceListResponse:
+    ) -> SyncMyCursorIDPage[Price]:
         """
         <p>Returns a list of your active prices, excluding <a href="/docs/products-prices/pricing-models#inline-pricing">inline prices</a>. For the list of inactive prices, set <code>active</code> to false.</p>
 
@@ -255,8 +255,9 @@ class PricesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v1/prices",
+            page=SyncMyCursorIDPage[Price],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -279,7 +280,7 @@ class PricesResource(SyncAPIResource):
                     price_list_params.PriceListParams,
                 ),
             ),
-            cast_to=PriceListResponse,
+            model=Price,
         )
 
 
@@ -447,7 +448,7 @@ class AsyncPricesResource(AsyncAPIResource):
             cast_to=Price,
         )
 
-    async def list(
+    def list(
         self,
         *,
         active: bool | Omit = omit,
@@ -467,7 +468,7 @@ class AsyncPricesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PriceListResponse:
+    ) -> AsyncPaginator[Price, AsyncMyCursorIDPage[Price]]:
         """
         <p>Returns a list of your active prices, excluding <a href="/docs/products-prices/pricing-models#inline-pricing">inline prices</a>. For the list of inactive prices, set <code>active</code> to false.</p>
 
@@ -513,14 +514,15 @@ class AsyncPricesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v1/prices",
+            page=AsyncMyCursorIDPage[Price],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "active": active,
                         "created": created,
@@ -537,7 +539,7 @@ class AsyncPricesResource(AsyncAPIResource):
                     price_list_params.PriceListParams,
                 ),
             ),
-            cast_to=PriceListResponse,
+            model=Price,
         )
 
 

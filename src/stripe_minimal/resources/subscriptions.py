@@ -18,9 +18,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.subscription import Subscription
-from ..types.subscription_list_response import SubscriptionListResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
@@ -365,7 +365,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionListResponse:
+    ) -> SyncMyCursorIDPage[Subscription]:
         """<p>By default, returns a list of subscriptions that have not been canceled.
 
         In order to list canceled subscriptions, specify <code>status=canceled</code>.</p>
@@ -426,8 +426,9 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v1/subscriptions",
+            page=SyncMyCursorIDPage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -453,7 +454,7 @@ class SubscriptionsResource(SyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            cast_to=SubscriptionListResponse,
+            model=Subscription,
         )
 
     def cancel(
@@ -825,7 +826,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=Subscription,
         )
 
-    async def list(
+    def list(
         self,
         *,
         automatic_tax: subscription_list_params.AutomaticTax | Omit = omit,
@@ -860,7 +861,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SubscriptionListResponse:
+    ) -> AsyncPaginator[Subscription, AsyncMyCursorIDPage[Subscription]]:
         """<p>By default, returns a list of subscriptions that have not been canceled.
 
         In order to list canceled subscriptions, specify <code>status=canceled</code>.</p>
@@ -921,14 +922,15 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v1/subscriptions",
+            page=AsyncMyCursorIDPage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "automatic_tax": automatic_tax,
                         "collection_method": collection_method,
@@ -948,7 +950,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                     subscription_list_params.SubscriptionListParams,
                 ),
             ),
-            cast_to=SubscriptionListResponse,
+            model=Subscription,
         )
 
     async def cancel(

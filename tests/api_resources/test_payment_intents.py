@@ -9,7 +9,8 @@ import pytest
 
 from tests.utils import assert_matches_type
 from stripe_minimal import Stripe, AsyncStripe
-from stripe_minimal.types import PaymentIntentListResponse
+from stripe_minimal.types import PaymentIntent
+from stripe_minimal.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +22,7 @@ class TestPaymentIntents:
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         payment_intent = client.payment_intents.list()
-        assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -40,7 +41,7 @@ class TestPaymentIntents:
             limit=0,
             starting_after="starting_after",
         )
-        assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -50,7 +51,7 @@ class TestPaymentIntents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_intent = response.parse()
-        assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -60,7 +61,7 @@ class TestPaymentIntents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_intent = response.parse()
-            assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +75,7 @@ class TestAsyncPaymentIntents:
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         payment_intent = await async_client.payment_intents.list()
-        assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -93,7 +94,7 @@ class TestAsyncPaymentIntents:
             limit=0,
             starting_after="starting_after",
         )
-        assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -103,7 +104,7 @@ class TestAsyncPaymentIntents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_intent = await response.parse()
-        assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -113,6 +114,6 @@ class TestAsyncPaymentIntents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_intent = await response.parse()
-            assert_matches_type(PaymentIntentListResponse, payment_intent, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
         assert cast(Any, response.is_closed) is True

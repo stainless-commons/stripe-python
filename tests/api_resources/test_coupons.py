@@ -9,7 +9,8 @@ import pytest
 
 from tests.utils import assert_matches_type
 from stripe_minimal import Stripe, AsyncStripe
-from stripe_minimal.types import Coupon, CouponListResponse
+from stripe_minimal.types import Coupon
+from stripe_minimal.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -69,7 +70,7 @@ class TestCoupons:
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         coupon = client.coupons.list()
-        assert_matches_type(CouponListResponse, coupon, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -86,7 +87,7 @@ class TestCoupons:
             limit=0,
             starting_after="starting_after",
         )
-        assert_matches_type(CouponListResponse, coupon, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -96,7 +97,7 @@ class TestCoupons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         coupon = response.parse()
-        assert_matches_type(CouponListResponse, coupon, path=["response"])
+        assert_matches_type(SyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -106,7 +107,7 @@ class TestCoupons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             coupon = response.parse()
-            assert_matches_type(CouponListResponse, coupon, path=["response"])
+            assert_matches_type(SyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,7 +169,7 @@ class TestAsyncCoupons:
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         coupon = await async_client.coupons.list()
-        assert_matches_type(CouponListResponse, coupon, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -185,7 +186,7 @@ class TestAsyncCoupons:
             limit=0,
             starting_after="starting_after",
         )
-        assert_matches_type(CouponListResponse, coupon, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -195,7 +196,7 @@ class TestAsyncCoupons:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         coupon = await response.parse()
-        assert_matches_type(CouponListResponse, coupon, path=["response"])
+        assert_matches_type(AsyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -205,6 +206,6 @@ class TestAsyncCoupons:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             coupon = await response.parse()
-            assert_matches_type(CouponListResponse, coupon, path=["response"])
+            assert_matches_type(AsyncMyCursorIDPage[Coupon], coupon, path=["response"])
 
         assert cast(Any, response.is_closed) is True

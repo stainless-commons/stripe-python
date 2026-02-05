@@ -52,16 +52,11 @@ from . import (
     issuing_transaction,
     payment_method_card,
     phase_automatic_tax,
-    price_list_response,
     billing_credit_grant,
     charge_transfer_data,
     automatic_tax_invoice,
-    dispute_list_response,
-    invoice_list_response,
     issuing_authorization,
     payment_transfer_data,
-    product_list_response,
-    customer_list_response,
     payment_method_details,
     schedule_phase_setting,
     account_invoices_settings,
@@ -70,12 +65,10 @@ from . import (
     schedule_add_invoice_item,
     sepa_debit_generated_from,
     automatic_tax_subscription,
-    subscription_list_response,
     subscription_transfer_data,
     connect_collection_transfer,
     invoiceitem_create_response,
     schedule_configuration_item,
-    payment_intent_list_response,
     payment_link_create_response,
     schedule_phase_configuration,
     issuing_cardholder_individual,
@@ -217,26 +210,20 @@ from .issuing_transaction import IssuingTransaction as IssuingTransaction
 from .payment_method_card import PaymentMethodCard as PaymentMethodCard
 from .phase_automatic_tax import PhaseAutomaticTax as PhaseAutomaticTax
 from .price_create_params import PriceCreateParams as PriceCreateParams
-from .price_list_response import PriceListResponse as PriceListResponse
 from .product_list_params import ProductListParams as ProductListParams
 from .billing_credit_grant import BillingCreditGrant as BillingCreditGrant
 from .charge_transfer_data import ChargeTransferData as ChargeTransferData
 from .coupon_create_params import CouponCreateParams as CouponCreateParams
-from .coupon_list_response import CouponListResponse as CouponListResponse
 from .custom_text_position import CustomTextPosition as CustomTextPosition
 from .customer_list_params import CustomerListParams as CustomerListParams
 from .refund_create_params import RefundCreateParams as RefundCreateParams
 from .automatic_tax_invoice import AutomaticTaxInvoice as AutomaticTaxInvoice
-from .dispute_list_response import DisputeListResponse as DisputeListResponse
 from .dispute_update_params import DisputeUpdateParams as DisputeUpdateParams
 from .invoice_create_params import InvoiceCreateParams as InvoiceCreateParams
-from .invoice_list_response import InvoiceListResponse as InvoiceListResponse
 from .issuing_authorization import IssuingAuthorization as IssuingAuthorization
 from .payment_transfer_data import PaymentTransferData as PaymentTransferData
 from .product_create_params import ProductCreateParams as ProductCreateParams
-from .product_list_response import ProductListResponse as ProductListResponse
 from .customer_create_params import CustomerCreateParams as CustomerCreateParams
-from .customer_list_response import CustomerListResponse as CustomerListResponse
 from .payment_method_details import PaymentMethodDetails as PaymentMethodDetails
 from .schedule_phase_setting import SchedulePhaseSetting as SchedulePhaseSetting
 from .account_retrieve_params import AccountRetrieveParams as AccountRetrieveParams
@@ -257,13 +244,11 @@ from .legal_entity_japan_address import LegalEntityJapanAddress as LegalEntityJa
 from .payment_intent_list_params import PaymentIntentListParams as PaymentIntentListParams
 from .payment_link_create_params import PaymentLinkCreateParams as PaymentLinkCreateParams
 from .subscription_cancel_params import SubscriptionCancelParams as SubscriptionCancelParams
-from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .subscription_transfer_data import SubscriptionTransferData as SubscriptionTransferData
 from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
 from .connect_collection_transfer import ConnectCollectionTransfer as ConnectCollectionTransfer
 from .invoiceitem_create_response import InvoiceitemCreateResponse as InvoiceitemCreateResponse
 from .schedule_configuration_item import ScheduleConfigurationItem as ScheduleConfigurationItem
-from .payment_intent_list_response import PaymentIntentListResponse as PaymentIntentListResponse
 from .payment_link_create_response import PaymentLinkCreateResponse as PaymentLinkCreateResponse
 from .schedule_phase_configuration import SchedulePhaseConfiguration as SchedulePhaseConfiguration
 from .balance_amount_by_source_type import BalanceAmountBySourceType as BalanceAmountBySourceType
@@ -403,7 +388,6 @@ if _compat.PYDANTIC_V1:
     promotion_code.PromotionCode.update_forward_refs()  # type: ignore
     tax_id.TaxID.update_forward_refs()  # type: ignore
     tax_ids_owner.TaxIDsOwner.update_forward_refs()  # type: ignore
-    customer_list_response.CustomerListResponse.update_forward_refs()  # type: ignore
     application_fee.ApplicationFee.update_forward_refs()  # type: ignore
     balance_transaction.BalanceTransaction.update_forward_refs()  # type: ignore
     charge.Charge.update_forward_refs()  # type: ignore
@@ -435,7 +419,6 @@ if _compat.PYDANTIC_V1:
     payout.Payout.update_forward_refs()  # type: ignore
     topup.Topup.update_forward_refs()  # type: ignore
     transfer.Transfer.update_forward_refs()  # type: ignore
-    dispute_list_response.DisputeListResponse.update_forward_refs()  # type: ignore
     api_errors.APIErrors.update_forward_refs()  # type: ignore
     automatic_tax_invoice.AutomaticTaxInvoice.update_forward_refs()  # type: ignore
     billing_bill_resource_invoicing_parents_invoice_parent.BillingBillResourceInvoicingParentsInvoiceParent.update_forward_refs()  # type: ignore
@@ -463,17 +446,13 @@ if _compat.PYDANTIC_V1:
     payment_record.PaymentRecord.update_forward_refs()  # type: ignore
     payments_primitives_payment_records_resource_payment_method_details.PaymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails.update_forward_refs()  # type: ignore
     sepa_debit_generated_from.SepaDebitGeneratedFrom.update_forward_refs()  # type: ignore
-    invoice_list_response.InvoiceListResponse.update_forward_refs()  # type: ignore
     invoiceitem_create_response.InvoiceitemCreateResponse.update_forward_refs()  # type: ignore
     payment_link_create_response.PaymentLinkCreateResponse.update_forward_refs()  # type: ignore
     payment_intent.PaymentIntent.update_forward_refs()  # type: ignore
     payment_transfer_data.PaymentTransferData.update_forward_refs()  # type: ignore
     review.Review.update_forward_refs()  # type: ignore
-    payment_intent_list_response.PaymentIntentListResponse.update_forward_refs()  # type: ignore
     price.Price.update_forward_refs()  # type: ignore
-    price_list_response.PriceListResponse.update_forward_refs()  # type: ignore
     product.Product.update_forward_refs()  # type: ignore
-    product_list_response.ProductListResponse.update_forward_refs()  # type: ignore
     refund.Refund.update_forward_refs()  # type: ignore
     transfer_reversal.TransferReversal.update_forward_refs()  # type: ignore
     automatic_tax_subscription.AutomaticTaxSubscription.update_forward_refs()  # type: ignore
@@ -500,7 +479,6 @@ if _compat.PYDANTIC_V1:
     subscription_invoice_settings.SubscriptionInvoiceSettings.update_forward_refs()  # type: ignore
     subscription_item.SubscriptionItem.update_forward_refs()  # type: ignore
     subscription_transfer_data.SubscriptionTransferData.update_forward_refs()  # type: ignore
-    subscription_list_response.SubscriptionListResponse.update_forward_refs()  # type: ignore
 else:
     account.Account.model_rebuild(_parent_namespace_depth=0)
     account_invoices_settings.AccountInvoicesSettings.model_rebuild(_parent_namespace_depth=0)
@@ -513,7 +491,6 @@ else:
     promotion_code.PromotionCode.model_rebuild(_parent_namespace_depth=0)
     tax_id.TaxID.model_rebuild(_parent_namespace_depth=0)
     tax_ids_owner.TaxIDsOwner.model_rebuild(_parent_namespace_depth=0)
-    customer_list_response.CustomerListResponse.model_rebuild(_parent_namespace_depth=0)
     application_fee.ApplicationFee.model_rebuild(_parent_namespace_depth=0)
     balance_transaction.BalanceTransaction.model_rebuild(_parent_namespace_depth=0)
     charge.Charge.model_rebuild(_parent_namespace_depth=0)
@@ -557,7 +534,6 @@ else:
     payout.Payout.model_rebuild(_parent_namespace_depth=0)
     topup.Topup.model_rebuild(_parent_namespace_depth=0)
     transfer.Transfer.model_rebuild(_parent_namespace_depth=0)
-    dispute_list_response.DisputeListResponse.model_rebuild(_parent_namespace_depth=0)
     api_errors.APIErrors.model_rebuild(_parent_namespace_depth=0)
     automatic_tax_invoice.AutomaticTaxInvoice.model_rebuild(_parent_namespace_depth=0)
     billing_bill_resource_invoicing_parents_invoice_parent.BillingBillResourceInvoicingParentsInvoiceParent.model_rebuild(
@@ -603,17 +579,13 @@ else:
         _parent_namespace_depth=0
     )
     sepa_debit_generated_from.SepaDebitGeneratedFrom.model_rebuild(_parent_namespace_depth=0)
-    invoice_list_response.InvoiceListResponse.model_rebuild(_parent_namespace_depth=0)
     invoiceitem_create_response.InvoiceitemCreateResponse.model_rebuild(_parent_namespace_depth=0)
     payment_link_create_response.PaymentLinkCreateResponse.model_rebuild(_parent_namespace_depth=0)
     payment_intent.PaymentIntent.model_rebuild(_parent_namespace_depth=0)
     payment_transfer_data.PaymentTransferData.model_rebuild(_parent_namespace_depth=0)
     review.Review.model_rebuild(_parent_namespace_depth=0)
-    payment_intent_list_response.PaymentIntentListResponse.model_rebuild(_parent_namespace_depth=0)
     price.Price.model_rebuild(_parent_namespace_depth=0)
-    price_list_response.PriceListResponse.model_rebuild(_parent_namespace_depth=0)
     product.Product.model_rebuild(_parent_namespace_depth=0)
-    product_list_response.ProductListResponse.model_rebuild(_parent_namespace_depth=0)
     refund.Refund.model_rebuild(_parent_namespace_depth=0)
     transfer_reversal.TransferReversal.model_rebuild(_parent_namespace_depth=0)
     automatic_tax_subscription.AutomaticTaxSubscription.model_rebuild(_parent_namespace_depth=0)
@@ -648,4 +620,3 @@ else:
     subscription_invoice_settings.SubscriptionInvoiceSettings.model_rebuild(_parent_namespace_depth=0)
     subscription_item.SubscriptionItem.model_rebuild(_parent_namespace_depth=0)
     subscription_transfer_data.SubscriptionTransferData.model_rebuild(_parent_namespace_depth=0)
-    subscription_list_response.SubscriptionListResponse.model_rebuild(_parent_namespace_depth=0)

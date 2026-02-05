@@ -18,9 +18,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.dispute import Dispute
-from ..types.dispute_list_response import DisputeListResponse
 
 __all__ = ["DisputesResource", "AsyncDisputesResource"]
 
@@ -126,7 +126,7 @@ class DisputesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DisputeListResponse:
+    ) -> SyncMyCursorIDPage[Dispute]:
         """
         <p>Returns a list of your disputes.</p>
 
@@ -161,8 +161,9 @@ class DisputesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/v1/disputes",
+            page=SyncMyCursorIDPage[Dispute],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -181,7 +182,7 @@ class DisputesResource(SyncAPIResource):
                     dispute_list_params.DisputeListParams,
                 ),
             ),
-            cast_to=DisputeListResponse,
+            model=Dispute,
         )
 
 
@@ -270,7 +271,7 @@ class AsyncDisputesResource(AsyncAPIResource):
             cast_to=Dispute,
         )
 
-    async def list(
+    def list(
         self,
         *,
         charge: str | Omit = omit,
@@ -286,7 +287,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> DisputeListResponse:
+    ) -> AsyncPaginator[Dispute, AsyncMyCursorIDPage[Dispute]]:
         """
         <p>Returns a list of your disputes.</p>
 
@@ -321,14 +322,15 @@ class AsyncDisputesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/v1/disputes",
+            page=AsyncMyCursorIDPage[Dispute],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "charge": charge,
                         "created": created,
@@ -341,7 +343,7 @@ class AsyncDisputesResource(AsyncAPIResource):
                     dispute_list_params.DisputeListParams,
                 ),
             ),
-            cast_to=DisputeListResponse,
+            model=Dispute,
         )
 
 
