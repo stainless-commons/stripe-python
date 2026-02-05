@@ -40,8 +40,10 @@ __all__ = [
     "PaymentSettingsPaymentMethodOptionsCustomerBalance",
     "PaymentSettingsPaymentMethodOptionsCustomerBalanceBankTransfer",
     "PaymentSettingsPaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer",
+    "PaymentSettingsPaymentMethodOptionsKonbini",
     "PaymentSettingsPaymentMethodOptionsPayto",
     "PaymentSettingsPaymentMethodOptionsPaytoMandateOptions",
+    "PaymentSettingsPaymentMethodOptionsSepaDebit",
     "PaymentSettingsPaymentMethodOptionsUsBankAccount",
     "PaymentSettingsPaymentMethodOptionsUsBankAccountFinancialConnections",
     "PaymentSettingsPaymentMethodOptionsUsBankAccountFinancialConnectionsFilters",
@@ -299,6 +301,10 @@ class PaymentSettingsPaymentMethodOptionsCustomerBalance(BaseModel):
     """
 
 
+class PaymentSettingsPaymentMethodOptionsKonbini(BaseModel):
+    pass
+
+
 class PaymentSettingsPaymentMethodOptionsPaytoMandateOptions(BaseModel):
     amount: Optional[int] = None
     """The maximum amount that can be collected in a single invoice.
@@ -332,6 +338,10 @@ class PaymentSettingsPaymentMethodOptionsPaytoMandateOptions(BaseModel):
 
 class PaymentSettingsPaymentMethodOptionsPayto(BaseModel):
     mandate_options: Optional[PaymentSettingsPaymentMethodOptionsPaytoMandateOptions] = None
+
+
+class PaymentSettingsPaymentMethodOptionsSepaDebit(BaseModel):
+    pass
 
 
 class PaymentSettingsPaymentMethodOptionsUsBankAccountFinancialConnectionsFilters(BaseModel):
@@ -371,11 +381,11 @@ class PaymentSettingsPaymentMethodOptions(BaseModel):
 
     customer_balance: Optional[PaymentSettingsPaymentMethodOptionsCustomerBalance] = None
 
-    konbini: Optional[object] = None
+    konbini: Optional[PaymentSettingsPaymentMethodOptionsKonbini] = None
 
     payto: Optional[PaymentSettingsPaymentMethodOptionsPayto] = None
 
-    sepa_debit: Optional[object] = None
+    sepa_debit: Optional[PaymentSettingsPaymentMethodOptionsSepaDebit] = None
 
     us_bank_account: Optional[PaymentSettingsPaymentMethodOptionsUsBankAccount] = None
 

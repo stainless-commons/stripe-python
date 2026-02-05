@@ -38,10 +38,16 @@ __all__ = [
     "CardOvercapture",
     "CardThreeDSecure",
     "CardWallet",
+    "CardWalletAmexExpressCheckout",
+    "CardWalletApplePay",
+    "CardWalletGooglePay",
+    "CardWalletLink",
     "CardWalletMasterpass",
+    "CardWalletSamsungPay",
     "CardWalletVisaCheckout",
     "Cashapp",
     "Crypto",
+    "CustomerBalance",
     "Eps",
     "Fpx",
     "Giropay",
@@ -56,6 +62,7 @@ __all__ = [
     "KonbiniStore",
     "KrCard",
     "Link",
+    "MBWay",
     "Mobilepay",
     "MobilepayCard",
     "Multibanco",
@@ -63,6 +70,7 @@ __all__ = [
     "NzBankAccount",
     "Oxxo",
     "P24",
+    "PayByBank",
     "Payco",
     "Paynow",
     "Paypal",
@@ -75,8 +83,12 @@ __all__ = [
     "SamsungPay",
     "Satispay",
     "SepaDebit",
+    "StripeAccount",
     "Swish",
+    "Twint",
+    "Wechat",
     "WechatPay",
+    "Zip",
 ]
 
 
@@ -395,6 +407,22 @@ class CardThreeDSecure(BaseModel):
     """The version of 3D Secure that was used."""
 
 
+class CardWalletAmexExpressCheckout(BaseModel):
+    pass
+
+
+class CardWalletApplePay(BaseModel):
+    pass
+
+
+class CardWalletGooglePay(BaseModel):
+    pass
+
+
+class CardWalletLink(BaseModel):
+    pass
+
+
 class CardWalletMasterpass(BaseModel):
     billing_address: Optional[Address] = None
 
@@ -413,6 +441,10 @@ class CardWalletMasterpass(BaseModel):
     """
 
     shipping_address: Optional[Address] = None
+
+
+class CardWalletSamsungPay(BaseModel):
+    pass
 
 
 class CardWalletVisaCheckout(BaseModel):
@@ -446,22 +478,22 @@ class CardWallet(BaseModel):
     value. It contains additional information specific to the card wallet type.
     """
 
-    amex_express_checkout: Optional[object] = None
+    amex_express_checkout: Optional[CardWalletAmexExpressCheckout] = None
 
-    apple_pay: Optional[object] = None
+    apple_pay: Optional[CardWalletApplePay] = None
 
     dynamic_last4: Optional[str] = None
     """
     (For tokenized numbers only.) The last four digits of the device account number.
     """
 
-    google_pay: Optional[object] = None
+    google_pay: Optional[CardWalletGooglePay] = None
 
-    link: Optional[object] = None
+    link: Optional[CardWalletLink] = None
 
     masterpass: Optional[CardWalletMasterpass] = None
 
-    samsung_pay: Optional[object] = None
+    samsung_pay: Optional[CardWalletSamsungPay] = None
 
     visa_checkout: Optional[CardWalletVisaCheckout] = None
 
@@ -582,6 +614,10 @@ class Crypto(BaseModel):
 
     transaction_hash: Optional[str] = None
     """The blockchain transaction hash of the crypto payment."""
+
+
+class CustomerBalance(BaseModel):
+    pass
 
 
 class Eps(BaseModel):
@@ -949,6 +985,10 @@ class Link(BaseModel):
     """
 
 
+class MBWay(BaseModel):
+    pass
+
+
 class MobilepayCard(BaseModel):
     brand: Optional[str] = None
     """Brand of the card used in the transaction"""
@@ -1072,6 +1112,10 @@ class P24(BaseModel):
     time of authorization or settlement. They cannot be set or mutated. Przelewy24
     rarely provides this information so the attribute is usually empty.
     """
+
+
+class PayByBank(BaseModel):
+    pass
 
 
 class Payco(BaseModel):
@@ -1226,6 +1270,10 @@ class SepaDebit(BaseModel):
     """
 
 
+class StripeAccount(BaseModel):
+    pass
+
+
 class Swish(BaseModel):
     fingerprint: Optional[str] = None
     """Uniquely identifies the payer's Swish account.
@@ -1239,6 +1287,14 @@ class Swish(BaseModel):
 
     verified_phone_last4: Optional[str] = None
     """The last four digits of the Swish account phone number"""
+
+
+class Twint(BaseModel):
+    pass
+
+
+class Wechat(BaseModel):
+    pass
 
 
 class WechatPay(BaseModel):
@@ -1262,6 +1318,10 @@ class WechatPay(BaseModel):
 
     transaction_id: Optional[str] = None
     """Transaction ID of this particular WeChat Pay transaction."""
+
+
+class Zip(BaseModel):
+    pass
 
 
 class PaymentMethodDetails(BaseModel):
@@ -1311,7 +1371,7 @@ class PaymentMethodDetails(BaseModel):
 
     crypto: Optional[Crypto] = None
 
-    customer_balance: Optional[object] = None
+    customer_balance: Optional[CustomerBalance] = None
 
     eps: Optional[Eps] = None
 
@@ -1335,7 +1395,7 @@ class PaymentMethodDetails(BaseModel):
 
     link: Optional[Link] = None
 
-    mb_way: Optional[object] = None
+    mb_way: Optional[MBWay] = None
 
     mobilepay: Optional[Mobilepay] = None
 
@@ -1349,7 +1409,7 @@ class PaymentMethodDetails(BaseModel):
 
     p24: Optional[P24] = None
 
-    pay_by_bank: Optional[object] = None
+    pay_by_bank: Optional[PayByBank] = None
 
     payco: Optional[Payco] = None
 
@@ -1373,19 +1433,19 @@ class PaymentMethodDetails(BaseModel):
 
     sofort: Optional["PaymentMethodDetailsSofortDispute"] = None
 
-    stripe_account: Optional[object] = None
+    stripe_account: Optional[StripeAccount] = None
 
     swish: Optional[Swish] = None
 
-    twint: Optional[object] = None
+    twint: Optional[Twint] = None
 
     us_bank_account: Optional["PaymentMethodDetailsUsBankAccount"] = None
 
-    wechat: Optional[object] = None
+    wechat: Optional[Wechat] = None
 
     wechat_pay: Optional[WechatPay] = None
 
-    zip: Optional[object] = None
+    zip: Optional[Zip] = None
 
 
 from .payment_method_details_ideal_dispute import PaymentMethodDetailsIdealDispute

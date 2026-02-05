@@ -7,7 +7,52 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["SetupAttemptPaymentMethodDetails", "Card", "CardChecks", "CardThreeDSecure", "CardWallet", "NaverPay"]
+__all__ = [
+    "SetupAttemptPaymentMethodDetails",
+    "AcssDebit",
+    "AmazonPay",
+    "AuBecsDebit",
+    "BacsDebit",
+    "Boleto",
+    "Card",
+    "CardChecks",
+    "CardThreeDSecure",
+    "CardWallet",
+    "CardWalletApplePay",
+    "CardWalletGooglePay",
+    "Cashapp",
+    "KakaoPay",
+    "Klarna",
+    "KrCard",
+    "Link",
+    "NaverPay",
+    "NzBankAccount",
+    "Paypal",
+    "Payto",
+    "RevolutPay",
+    "SepaDebit",
+    "UsBankAccount",
+]
+
+
+class AcssDebit(BaseModel):
+    pass
+
+
+class AmazonPay(BaseModel):
+    pass
+
+
+class AuBecsDebit(BaseModel):
+    pass
+
+
+class BacsDebit(BaseModel):
+    pass
+
+
+class Boleto(BaseModel):
+    pass
 
 
 class CardChecks(BaseModel):
@@ -74,6 +119,14 @@ class CardThreeDSecure(BaseModel):
     """The version of 3D Secure that was used."""
 
 
+class CardWalletApplePay(BaseModel):
+    pass
+
+
+class CardWalletGooglePay(BaseModel):
+    pass
+
+
 class CardWallet(BaseModel):
     type: Literal["apple_pay", "google_pay", "link"]
     """The type of the card wallet, one of `apple_pay`, `google_pay`, or `link`.
@@ -82,9 +135,9 @@ class CardWallet(BaseModel):
     value. It contains additional information specific to the card wallet type.
     """
 
-    apple_pay: Optional[object] = None
+    apple_pay: Optional[CardWalletApplePay] = None
 
-    google_pay: Optional[object] = None
+    google_pay: Optional[CardWalletGooglePay] = None
 
 
 class Card(BaseModel):
@@ -141,12 +194,56 @@ class Card(BaseModel):
     wallet: Optional[CardWallet] = None
 
 
+class Cashapp(BaseModel):
+    pass
+
+
+class KakaoPay(BaseModel):
+    pass
+
+
+class Klarna(BaseModel):
+    pass
+
+
+class KrCard(BaseModel):
+    pass
+
+
+class Link(BaseModel):
+    pass
+
+
 class NaverPay(BaseModel):
     buyer_id: Optional[str] = None
     """Uniquely identifies this particular Naver Pay account.
 
     You can use this attribute to check whether two Naver Pay accounts are the same.
     """
+
+
+class NzBankAccount(BaseModel):
+    pass
+
+
+class Paypal(BaseModel):
+    pass
+
+
+class Payto(BaseModel):
+    pass
+
+
+class RevolutPay(BaseModel):
+    pass
+
+
+class SepaDebit(BaseModel):
+    pass
+
+
+class UsBankAccount(BaseModel):
+    pass
 
 
 class SetupAttemptPaymentMethodDetails(BaseModel):
@@ -158,49 +255,49 @@ class SetupAttemptPaymentMethodDetails(BaseModel):
     method.
     """
 
-    acss_debit: Optional[object] = None
+    acss_debit: Optional[AcssDebit] = None
 
-    amazon_pay: Optional[object] = None
+    amazon_pay: Optional[AmazonPay] = None
 
-    au_becs_debit: Optional[object] = None
+    au_becs_debit: Optional[AuBecsDebit] = None
 
-    bacs_debit: Optional[object] = None
+    bacs_debit: Optional[BacsDebit] = None
 
     bancontact: Optional["PaymentMethodDetailsBancontactSetupAttempt"] = None
 
-    boleto: Optional[object] = None
+    boleto: Optional[Boleto] = None
 
     card: Optional[Card] = None
 
     card_present: Optional["SetupAttemptPaymentMethodDetailsCardPresent"] = None
 
-    cashapp: Optional[object] = None
+    cashapp: Optional[Cashapp] = None
 
     ideal: Optional["PaymentMethodDetailsIdealSetupAttempt"] = None
 
-    kakao_pay: Optional[object] = None
+    kakao_pay: Optional[KakaoPay] = None
 
-    klarna: Optional[object] = None
+    klarna: Optional[Klarna] = None
 
-    kr_card: Optional[object] = None
+    kr_card: Optional[KrCard] = None
 
-    link: Optional[object] = None
+    link: Optional[Link] = None
 
     naver_pay: Optional[NaverPay] = None
 
-    nz_bank_account: Optional[object] = None
+    nz_bank_account: Optional[NzBankAccount] = None
 
-    paypal: Optional[object] = None
+    paypal: Optional[Paypal] = None
 
-    payto: Optional[object] = None
+    payto: Optional[Payto] = None
 
-    revolut_pay: Optional[object] = None
+    revolut_pay: Optional[RevolutPay] = None
 
-    sepa_debit: Optional[object] = None
+    sepa_debit: Optional[SepaDebit] = None
 
     sofort: Optional["PaymentMethodDetailsSofortSetupAttempt"] = None
 
-    us_bank_account: Optional[object] = None
+    us_bank_account: Optional[UsBankAccount] = None
 
 
 from .payment_method_details_ideal_setup_attempt import PaymentMethodDetailsIdealSetupAttempt

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import builtins
 from typing import TYPE_CHECKING, List, Union, Optional
 from typing_extensions import Literal, TypeAlias, TypeAliasType
 
@@ -12,18 +11,34 @@ from .._models import BaseModel
 __all__ = [
     "Mandate",
     "CustomerAcceptance",
+    "CustomerAcceptanceOffline",
     "CustomerAcceptanceOnline",
     "PaymentMethod",
     "PaymentMethodDetails",
     "PaymentMethodDetailsAcssDebit",
+    "PaymentMethodDetailsAmazonPay",
     "PaymentMethodDetailsAuBecsDebit",
     "PaymentMethodDetailsBacsDebit",
+    "PaymentMethodDetailsCard",
+    "PaymentMethodDetailsCashapp",
+    "PaymentMethodDetailsKakaoPay",
+    "PaymentMethodDetailsKlarna",
+    "PaymentMethodDetailsKrCard",
+    "PaymentMethodDetailsLink",
+    "PaymentMethodDetailsNaverPay",
+    "PaymentMethodDetailsNzBankAccount",
     "PaymentMethodDetailsPaypal",
     "PaymentMethodDetailsPayto",
+    "PaymentMethodDetailsRevolutPay",
     "PaymentMethodDetailsSepaDebit",
     "PaymentMethodDetailsUsBankAccount",
+    "MultiUse",
     "SingleUse",
 ]
+
+
+class CustomerAcceptanceOffline(BaseModel):
+    pass
 
 
 class CustomerAcceptanceOnline(BaseModel):
@@ -44,7 +59,7 @@ class CustomerAcceptance(BaseModel):
     accepted_at: Optional[int] = None
     """The time that the customer accepts the mandate."""
 
-    offline: Optional[object] = None
+    offline: Optional[CustomerAcceptanceOffline] = None
 
     online: Optional[CustomerAcceptanceOnline] = None
 
@@ -70,6 +85,10 @@ class PaymentMethodDetailsAcssDebit(BaseModel):
 
     Only required if the 'payment_schedule' parameter is 'interval' or 'combined'.
     """
+
+
+class PaymentMethodDetailsAmazonPay(BaseModel):
+    pass
 
 
 class PaymentMethodDetailsAuBecsDebit(BaseModel):
@@ -107,6 +126,38 @@ class PaymentMethodDetailsBacsDebit(BaseModel):
     When the mandate is revoked on the Bacs network this field displays the reason
     for the revocation.
     """
+
+
+class PaymentMethodDetailsCard(BaseModel):
+    pass
+
+
+class PaymentMethodDetailsCashapp(BaseModel):
+    pass
+
+
+class PaymentMethodDetailsKakaoPay(BaseModel):
+    pass
+
+
+class PaymentMethodDetailsKlarna(BaseModel):
+    pass
+
+
+class PaymentMethodDetailsKrCard(BaseModel):
+    pass
+
+
+class PaymentMethodDetailsLink(BaseModel):
+    pass
+
+
+class PaymentMethodDetailsNaverPay(BaseModel):
+    pass
+
+
+class PaymentMethodDetailsNzBankAccount(BaseModel):
+    pass
 
 
 class PaymentMethodDetailsPaypal(BaseModel):
@@ -180,6 +231,10 @@ class PaymentMethodDetailsPayto(BaseModel):
     """
 
 
+class PaymentMethodDetailsRevolutPay(BaseModel):
+    pass
+
+
 class PaymentMethodDetailsSepaDebit(BaseModel):
     reference: str
     """The unique reference of the mandate."""
@@ -207,37 +262,41 @@ class PaymentMethodDetails(BaseModel):
 
     acss_debit: Optional[PaymentMethodDetailsAcssDebit] = None
 
-    amazon_pay: Optional[object] = None
+    amazon_pay: Optional[PaymentMethodDetailsAmazonPay] = None
 
     au_becs_debit: Optional[PaymentMethodDetailsAuBecsDebit] = None
 
     bacs_debit: Optional[PaymentMethodDetailsBacsDebit] = None
 
-    card: Optional[object] = None
+    card: Optional[PaymentMethodDetailsCard] = None
 
-    cashapp: Optional[object] = None
+    cashapp: Optional[PaymentMethodDetailsCashapp] = None
 
-    kakao_pay: Optional[object] = None
+    kakao_pay: Optional[PaymentMethodDetailsKakaoPay] = None
 
-    klarna: Optional[object] = None
+    klarna: Optional[PaymentMethodDetailsKlarna] = None
 
-    kr_card: Optional[object] = None
+    kr_card: Optional[PaymentMethodDetailsKrCard] = None
 
-    link: Optional[object] = None
+    link: Optional[PaymentMethodDetailsLink] = None
 
-    naver_pay: Optional[object] = None
+    naver_pay: Optional[PaymentMethodDetailsNaverPay] = None
 
-    nz_bank_account: Optional[object] = None
+    nz_bank_account: Optional[PaymentMethodDetailsNzBankAccount] = None
 
     paypal: Optional[PaymentMethodDetailsPaypal] = None
 
     payto: Optional[PaymentMethodDetailsPayto] = None
 
-    revolut_pay: Optional[object] = None
+    revolut_pay: Optional[PaymentMethodDetailsRevolutPay] = None
 
     sepa_debit: Optional[PaymentMethodDetailsSepaDebit] = None
 
     us_bank_account: Optional[PaymentMethodDetailsUsBankAccount] = None
+
+
+class MultiUse(BaseModel):
+    pass
 
 
 class SingleUse(BaseModel):
@@ -284,7 +343,7 @@ class Mandate(BaseModel):
     type: Literal["multi_use", "single_use"]
     """The type of the mandate."""
 
-    multi_use: Optional[builtins.object] = None
+    multi_use: Optional[MultiUse] = None
 
     on_behalf_of: Optional[str] = None
     """The account (if any) that the mandate is intended for."""
