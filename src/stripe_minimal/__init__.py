@@ -5,23 +5,14 @@ import typing as _t
 from . import types
 from ._types import NOT_GIVEN, Omit, NoneType, NotGiven, Transport, ProxiesTypes, omit, not_given
 from ._utils import file_from_path
-from ._client import (
-    Client,
-    Stream,
-    Timeout,
-    Transport,
-    AsyncClient,
-    AsyncStream,
-    StripeMinimal,
-    RequestOptions,
-    AsyncStripeMinimal,
-)
+from ._client import Client, Stream, Stripe, Timeout, Transport, AsyncClient, AsyncStream, AsyncStripe, RequestOptions
 from ._models import BaseModel
 from ._version import __title__, __version__
 from ._response import APIResponse as APIResponse, AsyncAPIResponse as AsyncAPIResponse
 from ._constants import DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES, DEFAULT_CONNECTION_LIMITS
 from ._exceptions import (
     APIError,
+    StripeError,
     ConflictError,
     NotFoundError,
     APIStatusError,
@@ -29,7 +20,6 @@ from ._exceptions import (
     APITimeoutError,
     BadRequestError,
     APIConnectionError,
-    StripeMinimalError,
     AuthenticationError,
     InternalServerError,
     PermissionDeniedError,
@@ -51,7 +41,7 @@ __all__ = [
     "not_given",
     "Omit",
     "omit",
-    "StripeMinimalError",
+    "StripeError",
     "APIError",
     "APIStatusError",
     "APITimeoutError",
@@ -71,8 +61,8 @@ __all__ = [
     "AsyncClient",
     "Stream",
     "AsyncStream",
-    "StripeMinimal",
-    "AsyncStripeMinimal",
+    "Stripe",
+    "AsyncStripe",
     "file_from_path",
     "BaseModel",
     "DEFAULT_TIMEOUT",

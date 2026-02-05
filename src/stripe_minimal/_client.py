@@ -61,19 +61,10 @@ if TYPE_CHECKING:
     from .resources.subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
     from .resources.payment_intents import PaymentIntentsResource, AsyncPaymentIntentsResource
 
-__all__ = [
-    "Timeout",
-    "Transport",
-    "ProxiesTypes",
-    "RequestOptions",
-    "StripeMinimal",
-    "AsyncStripeMinimal",
-    "Client",
-    "AsyncClient",
-]
+__all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Stripe", "AsyncStripe", "Client", "AsyncClient"]
 
 
-class StripeMinimal(SyncAPIClient):
+class Stripe(SyncAPIClient):
     # client options
     api_key: str | None
 
@@ -100,7 +91,7 @@ class StripeMinimal(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous StripeMinimal client instance.
+        """Construct a new synchronous Stripe client instance.
 
         This automatically infers the `api_key` argument from the `STRIPE_SECRET_KEY` environment variable if it is not provided.
         """
@@ -109,7 +100,7 @@ class StripeMinimal(SyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("STRIPE_MINIMAL_BASE_URL")
+            base_url = os.environ.get("STRIPE_BASE_URL")
         if base_url is None:
             base_url = f"https://api.stripe.com/"
 
@@ -203,12 +194,12 @@ class StripeMinimal(SyncAPIClient):
         return SubscriptionsResource(self)
 
     @cached_property
-    def with_raw_response(self) -> StripeMinimalWithRawResponse:
-        return StripeMinimalWithRawResponse(self)
+    def with_raw_response(self) -> StripeWithRawResponse:
+        return StripeWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> StripeMinimalWithStreamedResponse:
-        return StripeMinimalWithStreamedResponse(self)
+    def with_streaming_response(self) -> StripeWithStreamedResponse:
+        return StripeWithStreamedResponse(self)
 
     @property
     @override
@@ -326,7 +317,7 @@ class StripeMinimal(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncStripeMinimal(AsyncAPIClient):
+class AsyncStripe(AsyncAPIClient):
     # client options
     api_key: str | None
 
@@ -353,7 +344,7 @@ class AsyncStripeMinimal(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async AsyncStripeMinimal client instance.
+        """Construct a new async AsyncStripe client instance.
 
         This automatically infers the `api_key` argument from the `STRIPE_SECRET_KEY` environment variable if it is not provided.
         """
@@ -362,7 +353,7 @@ class AsyncStripeMinimal(AsyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("STRIPE_MINIMAL_BASE_URL")
+            base_url = os.environ.get("STRIPE_BASE_URL")
         if base_url is None:
             base_url = f"https://api.stripe.com/"
 
@@ -456,12 +447,12 @@ class AsyncStripeMinimal(AsyncAPIClient):
         return AsyncSubscriptionsResource(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncStripeMinimalWithRawResponse:
-        return AsyncStripeMinimalWithRawResponse(self)
+    def with_raw_response(self) -> AsyncStripeWithRawResponse:
+        return AsyncStripeWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncStripeMinimalWithStreamedResponse:
-        return AsyncStripeMinimalWithStreamedResponse(self)
+    def with_streaming_response(self) -> AsyncStripeWithStreamedResponse:
+        return AsyncStripeWithStreamedResponse(self)
 
     @property
     @override
@@ -579,10 +570,10 @@ class AsyncStripeMinimal(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class StripeMinimalWithRawResponse:
-    _client: StripeMinimal
+class StripeWithRawResponse:
+    _client: Stripe
 
-    def __init__(self, client: StripeMinimal) -> None:
+    def __init__(self, client: Stripe) -> None:
         self._client = client
 
     @cached_property
@@ -664,10 +655,10 @@ class StripeMinimalWithRawResponse:
         return SubscriptionsResourceWithRawResponse(self._client.subscriptions)
 
 
-class AsyncStripeMinimalWithRawResponse:
-    _client: AsyncStripeMinimal
+class AsyncStripeWithRawResponse:
+    _client: AsyncStripe
 
-    def __init__(self, client: AsyncStripeMinimal) -> None:
+    def __init__(self, client: AsyncStripe) -> None:
         self._client = client
 
     @cached_property
@@ -749,10 +740,10 @@ class AsyncStripeMinimalWithRawResponse:
         return AsyncSubscriptionsResourceWithRawResponse(self._client.subscriptions)
 
 
-class StripeMinimalWithStreamedResponse:
-    _client: StripeMinimal
+class StripeWithStreamedResponse:
+    _client: Stripe
 
-    def __init__(self, client: StripeMinimal) -> None:
+    def __init__(self, client: Stripe) -> None:
         self._client = client
 
     @cached_property
@@ -834,10 +825,10 @@ class StripeMinimalWithStreamedResponse:
         return SubscriptionsResourceWithStreamingResponse(self._client.subscriptions)
 
 
-class AsyncStripeMinimalWithStreamedResponse:
-    _client: AsyncStripeMinimal
+class AsyncStripeWithStreamedResponse:
+    _client: AsyncStripe
 
-    def __init__(self, client: AsyncStripeMinimal) -> None:
+    def __init__(self, client: AsyncStripe) -> None:
         self._client = client
 
     @cached_property
@@ -919,6 +910,6 @@ class AsyncStripeMinimalWithStreamedResponse:
         return AsyncSubscriptionsResourceWithStreamingResponse(self._client.subscriptions)
 
 
-Client = StripeMinimal
+Client = Stripe
 
-AsyncClient = AsyncStripeMinimal
+AsyncClient = AsyncStripe
