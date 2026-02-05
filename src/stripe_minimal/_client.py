@@ -102,10 +102,10 @@ class StripeMinimal(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous StripeMinimal client instance.
 
-        This automatically infers the `api_key` argument from the `STRIPE_MINIMAL_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `STRIPE_SECRET_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("STRIPE_MINIMAL_API_KEY")
+            api_key = os.environ.get("STRIPE_SECRET_KEY")
         self.api_key = api_key
 
         if base_url is None:
@@ -355,10 +355,10 @@ class AsyncStripeMinimal(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncStripeMinimal client instance.
 
-        This automatically infers the `api_key` argument from the `STRIPE_MINIMAL_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `STRIPE_SECRET_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("STRIPE_MINIMAL_API_KEY")
+            api_key = os.environ.get("STRIPE_SECRET_KEY")
         self.api_key = api_key
 
         if base_url is None:
