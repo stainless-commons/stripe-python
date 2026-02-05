@@ -18,28 +18,28 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.account import Account
 
-__all__ = ["AccountResource", "AsyncAccountResource"]
+__all__ = ["AccountsResource", "AsyncAccountsResource"]
 
 
-class AccountResource(SyncAPIResource):
+class AccountsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AccountResourceWithRawResponse:
+    def with_raw_response(self) -> AccountsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#accessing-raw-response-data-eg-headers
         """
-        return AccountResourceWithRawResponse(self)
+        return AccountsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AccountResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AccountsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#with_streaming_response
         """
-        return AccountResourceWithStreamingResponse(self)
+        return AccountsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -79,25 +79,25 @@ class AccountResource(SyncAPIResource):
         )
 
 
-class AsyncAccountResource(AsyncAPIResource):
+class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAccountResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncAccountResourceWithRawResponse(self)
+        return AsyncAccountsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAccountResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncAccountsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#with_streaming_response
         """
-        return AsyncAccountResourceWithStreamingResponse(self)
+        return AsyncAccountsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -137,37 +137,37 @@ class AsyncAccountResource(AsyncAPIResource):
         )
 
 
-class AccountResourceWithRawResponse:
-    def __init__(self, account: AccountResource) -> None:
-        self._account = account
+class AccountsResourceWithRawResponse:
+    def __init__(self, accounts: AccountsResource) -> None:
+        self._accounts = accounts
 
         self.retrieve = to_raw_response_wrapper(
-            account.retrieve,
+            accounts.retrieve,
         )
 
 
-class AsyncAccountResourceWithRawResponse:
-    def __init__(self, account: AsyncAccountResource) -> None:
-        self._account = account
+class AsyncAccountsResourceWithRawResponse:
+    def __init__(self, accounts: AsyncAccountsResource) -> None:
+        self._accounts = accounts
 
         self.retrieve = async_to_raw_response_wrapper(
-            account.retrieve,
+            accounts.retrieve,
         )
 
 
-class AccountResourceWithStreamingResponse:
-    def __init__(self, account: AccountResource) -> None:
-        self._account = account
+class AccountsResourceWithStreamingResponse:
+    def __init__(self, accounts: AccountsResource) -> None:
+        self._accounts = accounts
 
         self.retrieve = to_streamed_response_wrapper(
-            account.retrieve,
+            accounts.retrieve,
         )
 
 
-class AsyncAccountResourceWithStreamingResponse:
-    def __init__(self, account: AsyncAccountResource) -> None:
-        self._account = account
+class AsyncAccountsResourceWithStreamingResponse:
+    def __init__(self, accounts: AsyncAccountsResource) -> None:
+        self._accounts = accounts
 
         self.retrieve = async_to_streamed_response_wrapper(
-            account.retrieve,
+            accounts.retrieve,
         )

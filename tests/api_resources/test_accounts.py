@@ -14,19 +14,19 @@ from stripe_minimal.types import Account
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestAccount:
+class TestAccounts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Stripe) -> None:
-        account = client.account.retrieve()
+        account = client.accounts.retrieve()
         assert_matches_type(Account, account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Stripe) -> None:
-        account = client.account.retrieve(
+        account = client.accounts.retrieve(
             expand=["string"],
         )
         assert_matches_type(Account, account, path=["response"])
@@ -34,7 +34,7 @@ class TestAccount:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Stripe) -> None:
-        response = client.account.with_raw_response.retrieve()
+        response = client.accounts.with_raw_response.retrieve()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -44,7 +44,7 @@ class TestAccount:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Stripe) -> None:
-        with client.account.with_streaming_response.retrieve() as response:
+        with client.accounts.with_streaming_response.retrieve() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -54,7 +54,7 @@ class TestAccount:
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncAccount:
+class TestAsyncAccounts:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
@@ -62,13 +62,13 @@ class TestAsyncAccount:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStripe) -> None:
-        account = await async_client.account.retrieve()
+        account = await async_client.accounts.retrieve()
         assert_matches_type(Account, account, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncStripe) -> None:
-        account = await async_client.account.retrieve(
+        account = await async_client.accounts.retrieve(
             expand=["string"],
         )
         assert_matches_type(Account, account, path=["response"])
@@ -76,7 +76,7 @@ class TestAsyncAccount:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStripe) -> None:
-        response = await async_client.account.with_raw_response.retrieve()
+        response = await async_client.accounts.with_raw_response.retrieve()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -86,7 +86,7 @@ class TestAsyncAccount:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStripe) -> None:
-        async with async_client.account.with_streaming_response.retrieve() as response:
+        async with async_client.accounts.with_streaming_response.retrieve() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
