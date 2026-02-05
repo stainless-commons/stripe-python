@@ -8,13 +8,13 @@ from typing import TYPE_CHECKING
 import anyio
 
 if TYPE_CHECKING:
-    from ._client import StripeMinimal, AsyncStripeMinimal
+    from ._client import Stripe, AsyncStripe
 
 
 class SyncAPIResource:
-    _client: StripeMinimal
+    _client: Stripe
 
-    def __init__(self, client: StripeMinimal) -> None:
+    def __init__(self, client: Stripe) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post
@@ -28,9 +28,9 @@ class SyncAPIResource:
 
 
 class AsyncAPIResource:
-    _client: AsyncStripeMinimal
+    _client: AsyncStripe
 
-    def __init__(self, client: AsyncStripeMinimal) -> None:
+    def __init__(self, client: AsyncStripe) -> None:
         self._client = client
         self._get = client.get
         self._post = client.post

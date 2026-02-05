@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from stripe_minimal import StripeMinimal, AsyncStripeMinimal
+from stripe_minimal import Stripe, AsyncStripe
 from stripe_minimal.types import Customer, CustomerListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -19,13 +19,13 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create(self, client: StripeMinimal) -> None:
+    def test_method_create(self, client: Stripe) -> None:
         customer = client.customers.create()
         assert_matches_type(Customer, customer, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: StripeMinimal) -> None:
+    def test_method_create_with_all_params(self, client: Stripe) -> None:
         customer = client.customers.create(
             address={
                 "city": "city",
@@ -93,7 +93,7 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: StripeMinimal) -> None:
+    def test_raw_response_create(self, client: Stripe) -> None:
         response = client.customers.with_raw_response.create()
 
         assert response.is_closed is True
@@ -103,7 +103,7 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: StripeMinimal) -> None:
+    def test_streaming_response_create(self, client: Stripe) -> None:
         with client.customers.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,13 +115,13 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list(self, client: StripeMinimal) -> None:
+    def test_method_list(self, client: Stripe) -> None:
         customer = client.customers.list()
         assert_matches_type(CustomerListResponse, customer, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: StripeMinimal) -> None:
+    def test_method_list_with_all_params(self, client: Stripe) -> None:
         customer = client.customers.list(
             created={
                 "gt": 0,
@@ -140,7 +140,7 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: StripeMinimal) -> None:
+    def test_raw_response_list(self, client: Stripe) -> None:
         response = client.customers.with_raw_response.list()
 
         assert response.is_closed is True
@@ -150,7 +150,7 @@ class TestCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: StripeMinimal) -> None:
+    def test_streaming_response_list(self, client: Stripe) -> None:
         with client.customers.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,13 +168,13 @@ class TestAsyncCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_create(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.create()
         assert_matches_type(Customer, customer, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.create(
             address={
                 "city": "city",
@@ -242,7 +242,7 @@ class TestAsyncCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_raw_response_create(self, async_client: AsyncStripe) -> None:
         response = await async_client.customers.with_raw_response.create()
 
         assert response.is_closed is True
@@ -252,7 +252,7 @@ class TestAsyncCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncStripe) -> None:
         async with async_client.customers.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -264,13 +264,13 @@ class TestAsyncCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_list(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.list()
         assert_matches_type(CustomerListResponse, customer, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.list(
             created={
                 "gt": 0,
@@ -289,7 +289,7 @@ class TestAsyncCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.customers.with_raw_response.list()
 
         assert response.is_closed is True
@@ -299,7 +299,7 @@ class TestAsyncCustomers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.customers.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from stripe_minimal import StripeMinimal, AsyncStripeMinimal
+from stripe_minimal import Stripe, AsyncStripe
 from stripe_minimal.types import Dispute, DisputeListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -19,7 +19,7 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_update(self, client: StripeMinimal) -> None:
+    def test_method_update(self, client: Stripe) -> None:
         dispute = client.disputes.update(
             dispute="dispute",
         )
@@ -27,7 +27,7 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_update_with_all_params(self, client: StripeMinimal) -> None:
+    def test_method_update_with_all_params(self, client: Stripe) -> None:
         dispute = client.disputes.update(
             dispute="dispute",
             evidence={
@@ -108,7 +108,7 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: StripeMinimal) -> None:
+    def test_raw_response_update(self, client: Stripe) -> None:
         response = client.disputes.with_raw_response.update(
             dispute="dispute",
         )
@@ -120,7 +120,7 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: StripeMinimal) -> None:
+    def test_streaming_response_update(self, client: Stripe) -> None:
         with client.disputes.with_streaming_response.update(
             dispute="dispute",
         ) as response:
@@ -134,7 +134,7 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_path_params_update(self, client: StripeMinimal) -> None:
+    def test_path_params_update(self, client: Stripe) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispute` but received ''"):
             client.disputes.with_raw_response.update(
                 dispute="",
@@ -142,13 +142,13 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list(self, client: StripeMinimal) -> None:
+    def test_method_list(self, client: Stripe) -> None:
         dispute = client.disputes.list()
         assert_matches_type(DisputeListResponse, dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: StripeMinimal) -> None:
+    def test_method_list_with_all_params(self, client: Stripe) -> None:
         dispute = client.disputes.list(
             charge="charge",
             created={
@@ -167,7 +167,7 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: StripeMinimal) -> None:
+    def test_raw_response_list(self, client: Stripe) -> None:
         response = client.disputes.with_raw_response.list()
 
         assert response.is_closed is True
@@ -177,7 +177,7 @@ class TestDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: StripeMinimal) -> None:
+    def test_streaming_response_list(self, client: Stripe) -> None:
         with client.disputes.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -195,7 +195,7 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_update(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.update(
             dispute="dispute",
         )
@@ -203,7 +203,7 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.update(
             dispute="dispute",
             evidence={
@@ -284,7 +284,7 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_raw_response_update(self, async_client: AsyncStripe) -> None:
         response = await async_client.disputes.with_raw_response.update(
             dispute="dispute",
         )
@@ -296,7 +296,7 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncStripe) -> None:
         async with async_client.disputes.with_streaming_response.update(
             dispute="dispute",
         ) as response:
@@ -310,7 +310,7 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_path_params_update(self, async_client: AsyncStripe) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispute` but received ''"):
             await async_client.disputes.with_raw_response.update(
                 dispute="",
@@ -318,13 +318,13 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_list(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.list()
         assert_matches_type(DisputeListResponse, dispute, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.list(
             charge="charge",
             created={
@@ -343,7 +343,7 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.disputes.with_raw_response.list()
 
         assert response.is_closed is True
@@ -353,7 +353,7 @@ class TestAsyncDisputes:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.disputes.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

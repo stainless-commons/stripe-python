@@ -8,7 +8,7 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from stripe_minimal import StripeMinimal, AsyncStripeMinimal
+from stripe_minimal import Stripe, AsyncStripe
 from stripe_minimal.types import Refund
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -19,13 +19,13 @@ class TestRefunds:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create(self, client: StripeMinimal) -> None:
+    def test_method_create(self, client: Stripe) -> None:
         refund = client.refunds.create()
         assert_matches_type(Refund, refund, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: StripeMinimal) -> None:
+    def test_method_create_with_all_params(self, client: Stripe) -> None:
         refund = client.refunds.create(
             amount=0,
             charge="charge",
@@ -44,7 +44,7 @@ class TestRefunds:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: StripeMinimal) -> None:
+    def test_raw_response_create(self, client: Stripe) -> None:
         response = client.refunds.with_raw_response.create()
 
         assert response.is_closed is True
@@ -54,7 +54,7 @@ class TestRefunds:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: StripeMinimal) -> None:
+    def test_streaming_response_create(self, client: Stripe) -> None:
         with client.refunds.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,13 +72,13 @@ class TestAsyncRefunds:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_create(self, async_client: AsyncStripe) -> None:
         refund = await async_client.refunds.create()
         assert_matches_type(Refund, refund, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncStripe) -> None:
         refund = await async_client.refunds.create(
             amount=0,
             charge="charge",
@@ -97,7 +97,7 @@ class TestAsyncRefunds:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_raw_response_create(self, async_client: AsyncStripe) -> None:
         response = await async_client.refunds.with_raw_response.create()
 
         assert response.is_closed is True
@@ -107,7 +107,7 @@ class TestAsyncRefunds:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncStripeMinimal) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncStripe) -> None:
         async with async_client.refunds.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

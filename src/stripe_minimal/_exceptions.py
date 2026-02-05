@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class StripeMinimalError(Exception):
+class StripeError(Exception):
     pass
 
 
-class APIError(StripeMinimalError):
+class APIError(StripeError):
     message: str
     request: httpx.Request
 

@@ -1,11 +1,11 @@
 [project]
 name = "stripe_minimal"
 version = "0.0.1"
-description = "The official Python library for the stripe-minimal API"
+description = "The official Python library for the stripe API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Stripe Minimal", email = "dev-platform@stripe.com" },
+{ name = "Stripe", email = "dev-platform@stripe.com" },
 ]
 
 dependencies = [
