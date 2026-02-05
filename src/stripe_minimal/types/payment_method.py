@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import builtins
 from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from typing_extensions import Literal, TypeAlias, TypeAliasType
 
@@ -18,35 +17,65 @@ __all__ = [
     "PaymentMethod",
     "BillingDetails",
     "AcssDebit",
+    "Affirm",
+    "AfterpayClearpay",
+    "Alipay",
+    "Alma",
+    "AmazonPay",
     "AuBecsDebit",
     "BacsDebit",
+    "Bancontact",
+    "Billie",
+    "Blik",
     "Boleto",
     "CardPresent",
     "CardPresentNetworks",
     "Cashapp",
+    "Crypto",
     "Custom",
     "CustomLogo",
     "Customer",
+    "CustomerBalance",
     "Eps",
     "Fpx",
+    "Giropay",
+    "Grabpay",
     "Ideal",
     "InteracPresent",
     "InteracPresentNetworks",
+    "KakaoPay",
     "Klarna",
     "KlarnaDob",
+    "Konbini",
     "KrCard",
     "Link",
+    "MBWay",
+    "Mobilepay",
+    "Multibanco",
     "NaverPay",
     "NzBankAccount",
+    "Oxxo",
     "P24",
+    "PayByBank",
+    "Payco",
+    "Paynow",
     "Paypal",
     "Payto",
+    "Pix",
+    "Promptpay",
     "RadarOptions",
+    "RevolutPay",
+    "SamsungPay",
+    "Satispay",
     "Sofort",
+    "Swish",
+    "Twint",
     "UsBankAccount",
     "UsBankAccountNetworks",
     "UsBankAccountStatusDetails",
     "UsBankAccountStatusDetailsBlocked",
+    "WechatPay",
+    "Zip",
 ]
 
 
@@ -89,6 +118,26 @@ class AcssDebit(BaseModel):
     """Transit number of the bank account."""
 
 
+class Affirm(BaseModel):
+    pass
+
+
+class AfterpayClearpay(BaseModel):
+    pass
+
+
+class Alipay(BaseModel):
+    pass
+
+
+class Alma(BaseModel):
+    pass
+
+
+class AmazonPay(BaseModel):
+    pass
+
+
 class AuBecsDebit(BaseModel):
     bsb_number: Optional[str] = None
     """Six-digit number identifying bank and branch associated with this bank account."""
@@ -115,6 +164,18 @@ class BacsDebit(BaseModel):
 
     sort_code: Optional[str] = None
     """Sort code of the bank account. (e.g., `10-20-30`)"""
+
+
+class Bancontact(BaseModel):
+    pass
+
+
+class Billie(BaseModel):
+    pass
+
+
+class Blik(BaseModel):
+    pass
 
 
 class Boleto(BaseModel):
@@ -228,6 +289,10 @@ class Cashapp(BaseModel):
     """A public identifier for buyers using Cash App."""
 
 
+class Crypto(BaseModel):
+    pass
+
+
 class CustomLogo(BaseModel):
     url: str
     """URL of the Dashboard-only CustomPaymentMethodType logo."""
@@ -250,6 +315,10 @@ if TYPE_CHECKING or not PYDANTIC_V1:
     Customer = TypeAliasType("Customer", Union[str, "customer.Customer", None])
 else:
     Customer: TypeAlias = Union[str, "customer.Customer", None]
+
+
+class CustomerBalance(BaseModel):
+    pass
 
 
 class Eps(BaseModel):
@@ -334,6 +403,14 @@ class Fpx(BaseModel):
     `maybank2u`, `ocbc`, `public_bank`, `rhb`, `standard_chartered`, `uob`,
     `deutsche_bank`, `maybank2e`, `pb_enterprise`, or `bank_of_china`.
     """
+
+
+class Giropay(BaseModel):
+    pass
+
+
+class Grabpay(BaseModel):
+    pass
 
 
 class Ideal(BaseModel):
@@ -481,6 +558,10 @@ class InteracPresent(BaseModel):
     """How card details were read in this transaction."""
 
 
+class KakaoPay(BaseModel):
+    pass
+
+
 class KlarnaDob(BaseModel):
     day: Optional[int] = None
     """The day of birth, between 1 and 31."""
@@ -494,6 +575,10 @@ class KlarnaDob(BaseModel):
 
 class Klarna(BaseModel):
     dob: Optional[KlarnaDob] = None
+
+
+class Konbini(BaseModel):
+    pass
 
 
 class KrCard(BaseModel):
@@ -537,6 +622,18 @@ class Link(BaseModel):
     """Account owner's email address."""
 
 
+class MBWay(BaseModel):
+    pass
+
+
+class Mobilepay(BaseModel):
+    pass
+
+
+class Multibanco(BaseModel):
+    pass
+
+
 class NaverPay(BaseModel):
     funding: Literal["card", "points"]
     """Whether to fund this transaction with Naver Pay points or a card."""
@@ -570,6 +667,10 @@ class NzBankAccount(BaseModel):
 
     suffix: Optional[str] = None
     """The suffix of the bank account number."""
+
+
+class Oxxo(BaseModel):
+    pass
 
 
 class P24(BaseModel):
@@ -606,6 +707,18 @@ class P24(BaseModel):
     """The customer's bank, if provided."""
 
 
+class PayByBank(BaseModel):
+    pass
+
+
+class Payco(BaseModel):
+    pass
+
+
+class Paynow(BaseModel):
+    pass
+
+
 class Paypal(BaseModel):
     country: Optional[str] = None
     """Two-letter ISO code representing the buyer's country.
@@ -639,6 +752,14 @@ class Payto(BaseModel):
     """The PayID alias for the bank account."""
 
 
+class Pix(BaseModel):
+    pass
+
+
+class Promptpay(BaseModel):
+    pass
+
+
 class RadarOptions(BaseModel):
     """Options to configure Radar.
 
@@ -653,9 +774,29 @@ class RadarOptions(BaseModel):
     """
 
 
+class RevolutPay(BaseModel):
+    pass
+
+
+class SamsungPay(BaseModel):
+    pass
+
+
+class Satispay(BaseModel):
+    pass
+
+
 class Sofort(BaseModel):
     country: Optional[str] = None
     """Two-letter ISO code representing the country the bank account is located in."""
+
+
+class Swish(BaseModel):
+    pass
+
+
+class Twint(BaseModel):
+    pass
 
 
 class UsBankAccountNetworks(BaseModel):
@@ -718,6 +859,14 @@ class UsBankAccount(BaseModel):
     """Routing number of the bank account."""
 
     status_details: Optional[UsBankAccountStatusDetails] = None
+
+
+class WechatPay(BaseModel):
+    pass
+
+
+class Zip(BaseModel):
+    pass
 
 
 class PaymentMethod(BaseModel):
@@ -812,11 +961,11 @@ class PaymentMethod(BaseModel):
 
     acss_debit: Optional[AcssDebit] = None
 
-    affirm: Optional[builtins.object] = None
+    affirm: Optional[Affirm] = None
 
-    afterpay_clearpay: Optional[builtins.object] = None
+    afterpay_clearpay: Optional[AfterpayClearpay] = None
 
-    alipay: Optional[builtins.object] = None
+    alipay: Optional[Alipay] = None
 
     allow_redisplay: Optional[Literal["always", "limited", "unspecified"]] = None
     """
@@ -826,19 +975,19 @@ class PaymentMethod(BaseModel):
     method in a checkout flow. The field defaults to “unspecified”.
     """
 
-    alma: Optional[builtins.object] = None
+    alma: Optional[Alma] = None
 
-    amazon_pay: Optional[builtins.object] = None
+    amazon_pay: Optional[AmazonPay] = None
 
     au_becs_debit: Optional[AuBecsDebit] = None
 
     bacs_debit: Optional[BacsDebit] = None
 
-    bancontact: Optional[builtins.object] = None
+    bancontact: Optional[Bancontact] = None
 
-    billie: Optional[builtins.object] = None
+    billie: Optional[Billie] = None
 
-    blik: Optional[builtins.object] = None
+    blik: Optional[Blik] = None
 
     boleto: Optional[Boleto] = None
 
@@ -848,7 +997,7 @@ class PaymentMethod(BaseModel):
 
     cashapp: Optional[Cashapp] = None
 
-    crypto: Optional[builtins.object] = None
+    crypto: Optional[Crypto] = None
 
     custom: Optional[Custom] = None
 
@@ -860,31 +1009,31 @@ class PaymentMethod(BaseModel):
 
     customer_account: Optional[str] = None
 
-    customer_balance: Optional[builtins.object] = None
+    customer_balance: Optional[CustomerBalance] = None
 
     eps: Optional[Eps] = None
 
     fpx: Optional[Fpx] = None
 
-    giropay: Optional[builtins.object] = None
+    giropay: Optional[Giropay] = None
 
-    grabpay: Optional[builtins.object] = None
+    grabpay: Optional[Grabpay] = None
 
     ideal: Optional[Ideal] = None
 
     interac_present: Optional[InteracPresent] = None
 
-    kakao_pay: Optional[builtins.object] = None
+    kakao_pay: Optional[KakaoPay] = None
 
     klarna: Optional[Klarna] = None
 
-    konbini: Optional[builtins.object] = None
+    konbini: Optional[Konbini] = None
 
     kr_card: Optional[KrCard] = None
 
     link: Optional[Link] = None
 
-    mb_way: Optional[builtins.object] = None
+    mb_way: Optional[MBWay] = None
 
     metadata: Optional[Dict[str, str]] = None
     """
@@ -893,31 +1042,31 @@ class PaymentMethod(BaseModel):
     the object in a structured format.
     """
 
-    mobilepay: Optional[builtins.object] = None
+    mobilepay: Optional[Mobilepay] = None
 
-    multibanco: Optional[builtins.object] = None
+    multibanco: Optional[Multibanco] = None
 
     naver_pay: Optional[NaverPay] = None
 
     nz_bank_account: Optional[NzBankAccount] = None
 
-    oxxo: Optional[builtins.object] = None
+    oxxo: Optional[Oxxo] = None
 
     p24: Optional[P24] = None
 
-    pay_by_bank: Optional[builtins.object] = None
+    pay_by_bank: Optional[PayByBank] = None
 
-    payco: Optional[builtins.object] = None
+    payco: Optional[Payco] = None
 
-    paynow: Optional[builtins.object] = None
+    paynow: Optional[Paynow] = None
 
     paypal: Optional[Paypal] = None
 
     payto: Optional[Payto] = None
 
-    pix: Optional[builtins.object] = None
+    pix: Optional[Pix] = None
 
-    promptpay: Optional[builtins.object] = None
+    promptpay: Optional[Promptpay] = None
 
     radar_options: Optional[RadarOptions] = None
     """Options to configure Radar.
@@ -926,25 +1075,25 @@ class PaymentMethod(BaseModel):
     information.
     """
 
-    revolut_pay: Optional[builtins.object] = None
+    revolut_pay: Optional[RevolutPay] = None
 
-    samsung_pay: Optional[builtins.object] = None
+    samsung_pay: Optional[SamsungPay] = None
 
-    satispay: Optional[builtins.object] = None
+    satispay: Optional[Satispay] = None
 
     sepa_debit: Optional["PaymentMethodSepaDebit"] = None
 
     sofort: Optional[Sofort] = None
 
-    swish: Optional[builtins.object] = None
+    swish: Optional[Swish] = None
 
-    twint: Optional[builtins.object] = None
+    twint: Optional[Twint] = None
 
     us_bank_account: Optional[UsBankAccount] = None
 
-    wechat_pay: Optional[builtins.object] = None
+    wechat_pay: Optional[WechatPay] = None
 
-    zip: Optional[builtins.object] = None
+    zip: Optional[Zip] = None
 
 
 from . import customer

@@ -134,6 +134,7 @@ __all__ = [
     "PaymentMethodOptionsIdeal",
     "PaymentMethodOptionsIdealPaymentMethodOptionsIdeal",
     "PaymentMethodOptionsInteracPresent",
+    "PaymentMethodOptionsInteracPresentPaymentMethodOptionsInteracPresent",
     "PaymentMethodOptionsKakaoPay",
     "PaymentMethodOptionsKakaoPayPaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptions",
     "PaymentMethodOptionsKlarna",
@@ -159,6 +160,7 @@ __all__ = [
     "PaymentMethodOptionsP24",
     "PaymentMethodOptionsP24PaymentMethodOptionsP24",
     "PaymentMethodOptionsPayByBank",
+    "PaymentMethodOptionsPayByBankPaymentMethodOptionsPayByBank",
     "PaymentMethodOptionsPayco",
     "PaymentMethodOptionsPaycoPaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptions",
     "PaymentMethodOptionsPaynow",
@@ -2002,7 +2004,15 @@ PaymentMethodOptionsIdeal: TypeAlias = Union[
     PaymentMethodOptionsIdealPaymentMethodOptionsIdeal, PaymentIntentTypeSpecificPaymentMethodOptionsClient
 ]
 
-PaymentMethodOptionsInteracPresent: TypeAlias = Union[PaymentIntentTypeSpecificPaymentMethodOptionsClient, object]
+
+class PaymentMethodOptionsInteracPresentPaymentMethodOptionsInteracPresent(BaseModel):
+    pass
+
+
+PaymentMethodOptionsInteracPresent: TypeAlias = Union[
+    PaymentMethodOptionsInteracPresentPaymentMethodOptionsInteracPresent,
+    PaymentIntentTypeSpecificPaymentMethodOptionsClient,
+]
 
 
 class PaymentMethodOptionsKakaoPayPaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptions(BaseModel):
@@ -2421,7 +2431,14 @@ PaymentMethodOptionsP24: TypeAlias = Union[
     PaymentMethodOptionsP24PaymentMethodOptionsP24, PaymentIntentTypeSpecificPaymentMethodOptionsClient
 ]
 
-PaymentMethodOptionsPayByBank: TypeAlias = Union[PaymentIntentTypeSpecificPaymentMethodOptionsClient, object]
+
+class PaymentMethodOptionsPayByBankPaymentMethodOptionsPayByBank(BaseModel):
+    pass
+
+
+PaymentMethodOptionsPayByBank: TypeAlias = Union[
+    PaymentMethodOptionsPayByBankPaymentMethodOptionsPayByBank, PaymentIntentTypeSpecificPaymentMethodOptionsClient
+]
 
 
 class PaymentMethodOptionsPaycoPaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptions(BaseModel):

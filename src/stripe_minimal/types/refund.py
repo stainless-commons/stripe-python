@@ -14,21 +14,41 @@ __all__ = [
     "BalanceTransaction",
     "Charge",
     "DestinationDetails",
+    "DestinationDetailsAffirm",
+    "DestinationDetailsAfterpayClearpay",
+    "DestinationDetailsAlipay",
+    "DestinationDetailsAlma",
+    "DestinationDetailsAmazonPay",
+    "DestinationDetailsAuBankTransfer",
     "DestinationDetailsBlik",
     "DestinationDetailsBrBankTransfer",
     "DestinationDetailsCard",
+    "DestinationDetailsCashapp",
     "DestinationDetailsCrypto",
+    "DestinationDetailsCustomerCashBalance",
+    "DestinationDetailsEps",
     "DestinationDetailsEuBankTransfer",
     "DestinationDetailsGBBankTransfer",
+    "DestinationDetailsGiropay",
+    "DestinationDetailsGrabpay",
     "DestinationDetailsJpBankTransfer",
+    "DestinationDetailsKlarna",
     "DestinationDetailsMBWay",
     "DestinationDetailsMultibanco",
     "DestinationDetailsMxBankTransfer",
+    "DestinationDetailsNzBankTransfer",
     "DestinationDetailsP24",
+    "DestinationDetailsPaynow",
     "DestinationDetailsPaypal",
+    "DestinationDetailsPix",
+    "DestinationDetailsRevolut",
+    "DestinationDetailsSofort",
     "DestinationDetailsSwish",
     "DestinationDetailsThBankTransfer",
+    "DestinationDetailsTwint",
     "DestinationDetailsUsBankTransfer",
+    "DestinationDetailsWechatPay",
+    "DestinationDetailsZip",
     "FailureBalanceTransaction",
     "NextAction",
     "NextActionDisplayDetails",
@@ -47,6 +67,30 @@ if TYPE_CHECKING or not PYDANTIC_V1:
     Charge = TypeAliasType("Charge", Union[str, "charge.Charge", None])
 else:
     Charge: TypeAlias = Union[str, "charge.Charge", None]
+
+
+class DestinationDetailsAffirm(BaseModel):
+    pass
+
+
+class DestinationDetailsAfterpayClearpay(BaseModel):
+    pass
+
+
+class DestinationDetailsAlipay(BaseModel):
+    pass
+
+
+class DestinationDetailsAlma(BaseModel):
+    pass
+
+
+class DestinationDetailsAmazonPay(BaseModel):
+    pass
+
+
+class DestinationDetailsAuBankTransfer(BaseModel):
+    pass
 
 
 class DestinationDetailsBlik(BaseModel):
@@ -94,9 +138,21 @@ class DestinationDetailsCard(BaseModel):
     """Type of the reference number assigned to the refund."""
 
 
+class DestinationDetailsCashapp(BaseModel):
+    pass
+
+
 class DestinationDetailsCrypto(BaseModel):
     reference: Optional[str] = None
     """The transaction hash of the refund."""
+
+
+class DestinationDetailsCustomerCashBalance(BaseModel):
+    pass
+
+
+class DestinationDetailsEps(BaseModel):
+    pass
 
 
 class DestinationDetailsEuBankTransfer(BaseModel):
@@ -121,6 +177,14 @@ class DestinationDetailsGBBankTransfer(BaseModel):
     """
 
 
+class DestinationDetailsGiropay(BaseModel):
+    pass
+
+
+class DestinationDetailsGrabpay(BaseModel):
+    pass
+
+
 class DestinationDetailsJpBankTransfer(BaseModel):
     reference: Optional[str] = None
     """The reference assigned to the refund."""
@@ -130,6 +194,10 @@ class DestinationDetailsJpBankTransfer(BaseModel):
 
     This can be `pending`, `available` or `unavailable`.
     """
+
+
+class DestinationDetailsKlarna(BaseModel):
+    pass
 
 
 class DestinationDetailsMBWay(BaseModel):
@@ -165,6 +233,10 @@ class DestinationDetailsMxBankTransfer(BaseModel):
     """
 
 
+class DestinationDetailsNzBankTransfer(BaseModel):
+    pass
+
+
 class DestinationDetailsP24(BaseModel):
     reference: Optional[str] = None
     """The reference assigned to the refund."""
@@ -176,12 +248,28 @@ class DestinationDetailsP24(BaseModel):
     """
 
 
+class DestinationDetailsPaynow(BaseModel):
+    pass
+
+
 class DestinationDetailsPaypal(BaseModel):
     network_decline_code: Optional[str] = None
     """
     For refunds declined by the network, a decline code provided by the network
     which indicates the reason the refund failed.
     """
+
+
+class DestinationDetailsPix(BaseModel):
+    pass
+
+
+class DestinationDetailsRevolut(BaseModel):
+    pass
+
+
+class DestinationDetailsSofort(BaseModel):
+    pass
 
 
 class DestinationDetailsSwish(BaseModel):
@@ -212,6 +300,10 @@ class DestinationDetailsThBankTransfer(BaseModel):
     """
 
 
+class DestinationDetailsTwint(BaseModel):
+    pass
+
+
 class DestinationDetailsUsBankTransfer(BaseModel):
     reference: Optional[str] = None
     """The reference assigned to the refund."""
@@ -223,6 +315,14 @@ class DestinationDetailsUsBankTransfer(BaseModel):
     """
 
 
+class DestinationDetailsWechatPay(BaseModel):
+    pass
+
+
+class DestinationDetailsZip(BaseModel):
+    pass
+
+
 class DestinationDetails(BaseModel):
     type: str
     """
@@ -232,17 +332,17 @@ class DestinationDetails(BaseModel):
     transaction.
     """
 
-    affirm: Optional[object] = None
+    affirm: Optional[DestinationDetailsAffirm] = None
 
-    afterpay_clearpay: Optional[object] = None
+    afterpay_clearpay: Optional[DestinationDetailsAfterpayClearpay] = None
 
-    alipay: Optional[object] = None
+    alipay: Optional[DestinationDetailsAlipay] = None
 
-    alma: Optional[object] = None
+    alma: Optional[DestinationDetailsAlma] = None
 
-    amazon_pay: Optional[object] = None
+    amazon_pay: Optional[DestinationDetailsAmazonPay] = None
 
-    au_bank_transfer: Optional[object] = None
+    au_bank_transfer: Optional[DestinationDetailsAuBankTransfer] = None
 
     blik: Optional[DestinationDetailsBlik] = None
 
@@ -250,25 +350,25 @@ class DestinationDetails(BaseModel):
 
     card: Optional[DestinationDetailsCard] = None
 
-    cashapp: Optional[object] = None
+    cashapp: Optional[DestinationDetailsCashapp] = None
 
     crypto: Optional[DestinationDetailsCrypto] = None
 
-    customer_cash_balance: Optional[object] = None
+    customer_cash_balance: Optional[DestinationDetailsCustomerCashBalance] = None
 
-    eps: Optional[object] = None
+    eps: Optional[DestinationDetailsEps] = None
 
     eu_bank_transfer: Optional[DestinationDetailsEuBankTransfer] = None
 
     gb_bank_transfer: Optional[DestinationDetailsGBBankTransfer] = None
 
-    giropay: Optional[object] = None
+    giropay: Optional[DestinationDetailsGiropay] = None
 
-    grabpay: Optional[object] = None
+    grabpay: Optional[DestinationDetailsGrabpay] = None
 
     jp_bank_transfer: Optional[DestinationDetailsJpBankTransfer] = None
 
-    klarna: Optional[object] = None
+    klarna: Optional[DestinationDetailsKlarna] = None
 
     mb_way: Optional[DestinationDetailsMBWay] = None
 
@@ -276,31 +376,31 @@ class DestinationDetails(BaseModel):
 
     mx_bank_transfer: Optional[DestinationDetailsMxBankTransfer] = None
 
-    nz_bank_transfer: Optional[object] = None
+    nz_bank_transfer: Optional[DestinationDetailsNzBankTransfer] = None
 
     p24: Optional[DestinationDetailsP24] = None
 
-    paynow: Optional[object] = None
+    paynow: Optional[DestinationDetailsPaynow] = None
 
     paypal: Optional[DestinationDetailsPaypal] = None
 
-    pix: Optional[object] = None
+    pix: Optional[DestinationDetailsPix] = None
 
-    revolut: Optional[object] = None
+    revolut: Optional[DestinationDetailsRevolut] = None
 
-    sofort: Optional[object] = None
+    sofort: Optional[DestinationDetailsSofort] = None
 
     swish: Optional[DestinationDetailsSwish] = None
 
     th_bank_transfer: Optional[DestinationDetailsThBankTransfer] = None
 
-    twint: Optional[object] = None
+    twint: Optional[DestinationDetailsTwint] = None
 
     us_bank_transfer: Optional[DestinationDetailsUsBankTransfer] = None
 
-    wechat_pay: Optional[object] = None
+    wechat_pay: Optional[DestinationDetailsWechatPay] = None
 
-    zip: Optional[object] = None
+    zip: Optional[DestinationDetailsZip] = None
 
 
 if TYPE_CHECKING or not PYDANTIC_V1:

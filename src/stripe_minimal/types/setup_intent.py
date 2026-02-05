@@ -34,6 +34,7 @@ __all__ = [
     "PaymentMethodOptionsAcssDebitSetupIntentPaymentMethodOptionsAcssDebit",
     "PaymentMethodOptionsAcssDebitSetupIntentPaymentMethodOptionsAcssDebitMandateOptions",
     "PaymentMethodOptionsAmazonPay",
+    "PaymentMethodOptionsAmazonPaySetupIntentPaymentMethodOptionsAmazonPay",
     "PaymentMethodOptionsBacsDebit",
     "PaymentMethodOptionsBacsDebitSetupIntentPaymentMethodOptionsBacsDebit",
     "PaymentMethodOptionsBacsDebitSetupIntentPaymentMethodOptionsBacsDebitMandateOptions",
@@ -41,9 +42,11 @@ __all__ = [
     "PaymentMethodOptionsCardSetupIntentPaymentMethodOptionsCard",
     "PaymentMethodOptionsCardSetupIntentPaymentMethodOptionsCardMandateOptions",
     "PaymentMethodOptionsCardPresent",
+    "PaymentMethodOptionsCardPresentSetupIntentPaymentMethodOptionsCardPresent",
     "PaymentMethodOptionsKlarna",
     "PaymentMethodOptionsKlarnaSetupIntentPaymentMethodOptionsKlarna",
     "PaymentMethodOptionsLink",
+    "PaymentMethodOptionsLinkSetupIntentPaymentMethodOptionsLink",
     "PaymentMethodOptionsPaypal",
     "PaymentMethodOptionsPaypalSetupIntentPaymentMethodOptionsPaypal",
     "PaymentMethodOptionsPayto",
@@ -224,7 +227,15 @@ PaymentMethodOptionsAcssDebit: TypeAlias = Union[
     SetupIntentTypeSpecificPaymentMethodOptionsClient,
 ]
 
-PaymentMethodOptionsAmazonPay: TypeAlias = Union[SetupIntentTypeSpecificPaymentMethodOptionsClient, object]
+
+class PaymentMethodOptionsAmazonPaySetupIntentPaymentMethodOptionsAmazonPay(BaseModel):
+    pass
+
+
+PaymentMethodOptionsAmazonPay: TypeAlias = Union[
+    PaymentMethodOptionsAmazonPaySetupIntentPaymentMethodOptionsAmazonPay,
+    SetupIntentTypeSpecificPaymentMethodOptionsClient,
+]
 
 
 class PaymentMethodOptionsBacsDebitSetupIntentPaymentMethodOptionsBacsDebitMandateOptions(BaseModel):
@@ -352,7 +363,15 @@ PaymentMethodOptionsCard: TypeAlias = Union[
     PaymentMethodOptionsCardSetupIntentPaymentMethodOptionsCard, SetupIntentTypeSpecificPaymentMethodOptionsClient
 ]
 
-PaymentMethodOptionsCardPresent: TypeAlias = Union[SetupIntentTypeSpecificPaymentMethodOptionsClient, object]
+
+class PaymentMethodOptionsCardPresentSetupIntentPaymentMethodOptionsCardPresent(BaseModel):
+    pass
+
+
+PaymentMethodOptionsCardPresent: TypeAlias = Union[
+    PaymentMethodOptionsCardPresentSetupIntentPaymentMethodOptionsCardPresent,
+    SetupIntentTypeSpecificPaymentMethodOptionsClient,
+]
 
 
 class PaymentMethodOptionsKlarnaSetupIntentPaymentMethodOptionsKlarna(BaseModel):
@@ -369,7 +388,14 @@ PaymentMethodOptionsKlarna: TypeAlias = Union[
     PaymentMethodOptionsKlarnaSetupIntentPaymentMethodOptionsKlarna, SetupIntentTypeSpecificPaymentMethodOptionsClient
 ]
 
-PaymentMethodOptionsLink: TypeAlias = Union[SetupIntentTypeSpecificPaymentMethodOptionsClient, object]
+
+class PaymentMethodOptionsLinkSetupIntentPaymentMethodOptionsLink(BaseModel):
+    pass
+
+
+PaymentMethodOptionsLink: TypeAlias = Union[
+    PaymentMethodOptionsLinkSetupIntentPaymentMethodOptionsLink, SetupIntentTypeSpecificPaymentMethodOptionsClient
+]
 
 
 class PaymentMethodOptionsPaypalSetupIntentPaymentMethodOptionsPaypal(BaseModel):

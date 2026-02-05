@@ -14,7 +14,12 @@ __all__ = [
     "Networks",
     "ThreeDSecureUsage",
     "Wallet",
+    "WalletAmexExpressCheckout",
+    "WalletApplePay",
+    "WalletGooglePay",
+    "WalletLink",
     "WalletMasterpass",
+    "WalletSamsungPay",
     "WalletVisaCheckout",
 ]
 
@@ -59,6 +64,22 @@ class ThreeDSecureUsage(BaseModel):
     """Whether 3D Secure is supported on this card."""
 
 
+class WalletAmexExpressCheckout(BaseModel):
+    pass
+
+
+class WalletApplePay(BaseModel):
+    pass
+
+
+class WalletGooglePay(BaseModel):
+    pass
+
+
+class WalletLink(BaseModel):
+    pass
+
+
 class WalletMasterpass(BaseModel):
     billing_address: Optional[Address] = None
 
@@ -77,6 +98,10 @@ class WalletMasterpass(BaseModel):
     """
 
     shipping_address: Optional[Address] = None
+
+
+class WalletSamsungPay(BaseModel):
+    pass
 
 
 class WalletVisaCheckout(BaseModel):
@@ -110,22 +135,22 @@ class Wallet(BaseModel):
     value. It contains additional information specific to the card wallet type.
     """
 
-    amex_express_checkout: Optional[object] = None
+    amex_express_checkout: Optional[WalletAmexExpressCheckout] = None
 
-    apple_pay: Optional[object] = None
+    apple_pay: Optional[WalletApplePay] = None
 
     dynamic_last4: Optional[str] = None
     """
     (For tokenized numbers only.) The last four digits of the device account number.
     """
 
-    google_pay: Optional[object] = None
+    google_pay: Optional[WalletGooglePay] = None
 
-    link: Optional[object] = None
+    link: Optional[WalletLink] = None
 
     masterpass: Optional[WalletMasterpass] = None
 
-    samsung_pay: Optional[object] = None
+    samsung_pay: Optional[WalletSamsungPay] = None
 
     visa_checkout: Optional[WalletVisaCheckout] = None
 
