@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from typing_extensions import Literal, TypeAlias, TypeAliasType
 
+from .._compat import PYDANTIC_V1
 from .._models import BaseModel
 from .tax_rate import TaxRate
 
@@ -53,7 +54,10 @@ class PriceDeletedPrice(BaseModel):
     """
 
 
-Price: TypeAlias = Union[str, "price.Price", PriceDeletedPrice]
+if TYPE_CHECKING or not PYDANTIC_V1:
+    Price = TypeAliasType("Price", Union[str, "price.Price", PriceDeletedPrice])
+else:
+    Price: TypeAlias = Union[str, "price.Price", PriceDeletedPrice]
 
 
 class ScheduleAddInvoiceItem(BaseModel):

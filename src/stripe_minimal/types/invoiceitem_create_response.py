@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from typing_extensions import Literal, TypeAlias, TypeAliasType
 
+from .._compat import PYDANTIC_V1
 from .._models import BaseModel
 from .tax_rate import TaxRate
 from .shared.deleted_customer import DeletedCustomer
@@ -25,7 +26,10 @@ __all__ = [
     "TestClock",
 ]
 
-Customer: TypeAlias = Union[str, "customer.Customer", DeletedCustomer]
+if TYPE_CHECKING or not PYDANTIC_V1:
+    Customer = TypeAliasType("Customer", Union[str, "customer.Customer", DeletedCustomer])
+else:
+    Customer: TypeAlias = Union[str, "customer.Customer", DeletedCustomer]
 
 
 class Period(BaseModel):
@@ -39,9 +43,15 @@ class Period(BaseModel):
     """The start of the period. This value is inclusive."""
 
 
-Discount: TypeAlias = Union[str, "discount.Discount"]
+if TYPE_CHECKING or not PYDANTIC_V1:
+    Discount = TypeAliasType("Discount", Union[str, "discount.Discount"])
+else:
+    Discount: TypeAlias = Union[str, "discount.Discount"]
 
-Invoice: TypeAlias = Union[str, "invoice.Invoice", None]
+if TYPE_CHECKING or not PYDANTIC_V1:
+    Invoice = TypeAliasType("Invoice", Union[str, "invoice.Invoice", None])
+else:
+    Invoice: TypeAlias = Union[str, "invoice.Invoice", None]
 
 
 class ParentSubscriptionDetails(BaseModel):
