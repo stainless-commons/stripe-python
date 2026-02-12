@@ -1,5 +1,5 @@
 [project]
-name = "stainless-commons-stripe"
+name = "stainless_commons_stripe"
 version = "0.0.1"
 description = "The official Python library for the Stripe API"
 dynamic = ["readme"]
