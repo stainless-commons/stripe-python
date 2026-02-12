@@ -2,7 +2,7 @@ import operator
 from typing import Any
 from typing_extensions import override
 
-from stripe_minimal._utils import LazyProxy
+from stainless_commons_stripe._utils import LazyProxy
 
 
 class RecursiveLazyProxy(LazyProxy[Any]):

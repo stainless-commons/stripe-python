@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from stripe_minimal._types import FileTypes
-from stripe_minimal._utils import extract_files
+from stainless_commons_stripe._types import FileTypes
+from stainless_commons_stripe._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

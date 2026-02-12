@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from stripe_minimal import Stripe, AsyncStripe
-from stripe_minimal._streaming import Stream, AsyncStream, ServerSentEvent
+from stainless_commons_stripe import Stripe, AsyncStripe
+from stainless_commons_stripe._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio

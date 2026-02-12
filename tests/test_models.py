@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from stripe_minimal._utils import PropertyInfo
-from stripe_minimal._compat import PYDANTIC_V1, parse_obj, model_dump, model_json
-from stripe_minimal._models import DISCRIMINATOR_CACHE, BaseModel, construct_type
+from stainless_commons_stripe._utils import PropertyInfo
+from stainless_commons_stripe._compat import PYDANTIC_V1, parse_obj, model_dump, model_json
+from stainless_commons_stripe._models import DISCRIMINATOR_CACHE, BaseModel, construct_type
 
 
 class BasicModel(BaseModel):
