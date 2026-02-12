@@ -6,8 +6,8 @@ import httpx
 import pytest
 import pydantic
 
-from stripe_minimal import Stripe, BaseModel, AsyncStripe
-from stripe_minimal._response import (
+from stainless_commons_stripe import Stripe, BaseModel, AsyncStripe
+from stainless_commons_stripe._response import (
     APIResponse,
     BaseAPIResponse,
     AsyncAPIResponse,
@@ -15,8 +15,8 @@ from stripe_minimal._response import (
     AsyncBinaryAPIResponse,
     extract_response_type,
 )
-from stripe_minimal._streaming import Stream
-from stripe_minimal._base_client import FinalRequestOptions
+from stainless_commons_stripe._streaming import Stream
+from stainless_commons_stripe._base_client import FinalRequestOptions
 
 
 class ConcreteBaseAPIResponse(APIResponse[bytes]): ...
@@ -37,7 +37,7 @@ def test_extract_response_type_direct_classes() -> None:
 def test_extract_response_type_direct_class_missing_type_arg() -> None:
     with pytest.raises(
         RuntimeError,
-        match="Expected type <class 'stripe_minimal._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
+        match="Expected type <class 'stainless_commons_stripe._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
     ):
         extract_response_type(AsyncAPIResponse)
 
@@ -68,7 +68,7 @@ def test_response_parse_mismatched_basemodel(client: Stripe) -> None:
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from stripe_minimal import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from stainless_commons_stripe import BaseModel`",
     ):
         response.parse(to=PydanticModel)
 
@@ -86,7 +86,7 @@ async def test_async_response_parse_mismatched_basemodel(async_client: AsyncStri
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from stripe_minimal import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from stainless_commons_stripe import BaseModel`",
     ):
         await response.parse(to=PydanticModel)
 

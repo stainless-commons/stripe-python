@@ -81,12 +81,12 @@ _setup_logging()
 # Update the __module__ attribute for exported symbols so that
 # error messages point to this module instead of the module
 # it was originally defined in, e.g.
-# stripe_minimal._exceptions.NotFoundError -> stripe_minimal.NotFoundError
+# stainless_commons_stripe._exceptions.NotFoundError -> stainless_commons_stripe.NotFoundError
 __locals = locals()
 for __name in __all__:
     if not __name.startswith("__"):
         try:
-            __locals[__name].__module__ = "stripe_minimal"
+            __locals[__name].__module__ = "stainless_commons_stripe"
         except (TypeError, AttributeError):
             # Some of our exported symbols are builtins which we can't set attributes for.
             pass

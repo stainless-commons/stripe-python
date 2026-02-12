@@ -19,12 +19,12 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from stripe_minimal import Stripe, AsyncStripe, APIResponseValidationError
-from stripe_minimal._types import Omit
-from stripe_minimal._utils import asyncify
-from stripe_minimal._models import BaseModel, FinalRequestOptions
-from stripe_minimal._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
-from stripe_minimal._base_client import (
+from stainless_commons_stripe import Stripe, AsyncStripe, APIResponseValidationError
+from stainless_commons_stripe._types import Omit
+from stainless_commons_stripe._utils import asyncify
+from stainless_commons_stripe._models import BaseModel, FinalRequestOptions
+from stainless_commons_stripe._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from stainless_commons_stripe._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
@@ -286,10 +286,10 @@ class TestStripe:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "stripe_minimal/_legacy_response.py",
-                        "stripe_minimal/_response.py",
+                        "stainless_commons_stripe/_legacy_response.py",
+                        "stainless_commons_stripe/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "stripe_minimal/_compat.py",
+                        "stainless_commons_stripe/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -855,7 +855,7 @@ class TestStripe:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Stripe) -> None:
         respx_mock.get("/v1/account").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -865,7 +865,7 @@ class TestStripe:
 
         assert _get_open_connections(client) == 0
 
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Stripe) -> None:
         respx_mock.get("/v1/account").mock(return_value=httpx.Response(500))
@@ -875,7 +875,7 @@ class TestStripe:
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
@@ -906,7 +906,7 @@ class TestStripe:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
         self, client: Stripe, failures_before_success: int, respx_mock: MockRouter
@@ -929,7 +929,7 @@ class TestStripe:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
         self, client: Stripe, failures_before_success: int, respx_mock: MockRouter
@@ -1174,10 +1174,10 @@ class TestAsyncStripe:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "stripe_minimal/_legacy_response.py",
-                        "stripe_minimal/_response.py",
+                        "stainless_commons_stripe/_legacy_response.py",
+                        "stainless_commons_stripe/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "stripe_minimal/_compat.py",
+                        "stainless_commons_stripe/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -1762,7 +1762,7 @@ class TestAsyncStripe:
         calculated = async_client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncStripe) -> None:
         respx_mock.get("/v1/account").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -1772,7 +1772,7 @@ class TestAsyncStripe:
 
         assert _get_open_connections(async_client) == 0
 
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncStripe) -> None:
         respx_mock.get("/v1/account").mock(return_value=httpx.Response(500))
@@ -1782,7 +1782,7 @@ class TestAsyncStripe:
         assert _get_open_connections(async_client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
@@ -1813,7 +1813,7 @@ class TestAsyncStripe:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_omit_retry_count_header(
         self, async_client: AsyncStripe, failures_before_success: int, respx_mock: MockRouter
@@ -1836,7 +1836,7 @@ class TestAsyncStripe:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("stripe_minimal._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("stainless_commons_stripe._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_overwrite_retry_count_header(
         self, async_client: AsyncStripe, failures_before_success: int, respx_mock: MockRouter
