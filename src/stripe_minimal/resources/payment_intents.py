@@ -29,7 +29,7 @@ class PaymentIntentsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-commons/stripe-python#accessing-raw-response-data-eg-headers
         """
         return PaymentIntentsResourceWithRawResponse(self)
 
@@ -38,7 +38,7 @@ class PaymentIntentsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-commons/stripe-python#with_streaming_response
         """
         return PaymentIntentsResourceWithStreamingResponse(self)
 
@@ -127,7 +127,7 @@ class AsyncPaymentIntentsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-commons/stripe-python#accessing-raw-response-data-eg-headers
         """
         return AsyncPaymentIntentsResourceWithRawResponse(self)
 
@@ -136,7 +136,7 @@ class AsyncPaymentIntentsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-commons/stripe-python#with_streaming_response
         """
         return AsyncPaymentIntentsResourceWithStreamingResponse(self)
 

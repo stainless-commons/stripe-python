@@ -28,7 +28,7 @@ class BalanceResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-commons/stripe-python#accessing-raw-response-data-eg-headers
         """
         return BalanceResourceWithRawResponse(self)
 
@@ -37,7 +37,7 @@ class BalanceResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-commons/stripe-python#with_streaming_response
         """
         return BalanceResourceWithStreamingResponse(self)
 
@@ -87,7 +87,7 @@ class AsyncBalanceResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-commons/stripe-python#accessing-raw-response-data-eg-headers
         """
         return AsyncBalanceResourceWithRawResponse(self)
 
@@ -96,7 +96,7 @@ class AsyncBalanceResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/stripe-minimal-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-commons/stripe-python#with_streaming_response
         """
         return AsyncBalanceResourceWithStreamingResponse(self)
 
