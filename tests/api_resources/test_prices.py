@@ -8,9 +8,9 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from stripe_minimal import Stripe, AsyncStripe
-from stripe_minimal.types import Price
-from stripe_minimal.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
+from stainless_commons_stripe import Stripe, AsyncStripe
+from stainless_commons_stripe.types import Price
+from stainless_commons_stripe.pagination import SyncMyCursorIDPage, AsyncMyCursorIDPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

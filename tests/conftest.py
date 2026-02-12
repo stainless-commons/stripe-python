@@ -10,15 +10,15 @@ import httpx
 import pytest
 from pytest_asyncio import is_async_test
 
-from stripe_minimal import Stripe, AsyncStripe, DefaultAioHttpClient
-from stripe_minimal._utils import is_dict
+from stainless_commons_stripe import Stripe, AsyncStripe, DefaultAioHttpClient
+from stainless_commons_stripe._utils import is_dict
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest  # pyright: ignore[reportPrivateImportUsage]
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("stripe_minimal").setLevel(logging.DEBUG)
+logging.getLogger("stainless_commons_stripe").setLevel(logging.DEBUG)
 
 
 # automatically add `pytest.mark.asyncio()` to all of our async tests

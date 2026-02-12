@@ -61,6 +61,6 @@
   ],
   "release-type": "python",
   "extra-files": [
-    "src/stripe_minimal/_version.py"
+    "src/stainless_commons_stripe/_version.py"
   ]
 }

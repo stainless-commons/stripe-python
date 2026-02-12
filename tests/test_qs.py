@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from stripe_minimal._qs import Querystring, stringify
+from stainless_commons_stripe._qs import Querystring, stringify
 
 
 def test_empty() -> None:

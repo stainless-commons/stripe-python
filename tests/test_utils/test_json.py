@@ -5,8 +5,8 @@ from typing import Union
 
 import pydantic
 
-from stripe_minimal import _compat
-from stripe_minimal._utils._json import openapi_dumps
+from stainless_commons_stripe import _compat
+from stainless_commons_stripe._utils._json import openapi_dumps
 
 
 class TestOpenapiDumps:

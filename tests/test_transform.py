@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from stripe_minimal._types import Base64FileInput, omit, not_given
-from stripe_minimal._utils import (
+from stainless_commons_stripe._types import Base64FileInput, omit, not_given
+from stainless_commons_stripe._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from stripe_minimal._compat import PYDANTIC_V1
-from stripe_minimal._models import BaseModel
+from stainless_commons_stripe._compat import PYDANTIC_V1
+from stainless_commons_stripe._models import BaseModel
 
 _T = TypeVar("_T")
 
