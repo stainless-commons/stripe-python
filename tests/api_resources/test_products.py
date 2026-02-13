@@ -18,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestProducts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Stripe) -> None:
         product = client.products.create(
@@ -26,7 +25,6 @@ class TestProducts:
         )
         assert_matches_type(Product, product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Stripe) -> None:
         product = client.products.create(
@@ -91,7 +89,6 @@ class TestProducts:
         )
         assert_matches_type(Product, product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Stripe) -> None:
         response = client.products.with_raw_response.create(
@@ -103,7 +100,6 @@ class TestProducts:
         product = response.parse()
         assert_matches_type(Product, product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Stripe) -> None:
         with client.products.with_streaming_response.create(
@@ -117,13 +113,11 @@ class TestProducts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         product = client.products.list()
         assert_matches_type(SyncMyCursorIDPage[Product], product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stripe) -> None:
         product = client.products.list(
@@ -144,7 +138,6 @@ class TestProducts:
         )
         assert_matches_type(SyncMyCursorIDPage[Product], product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stripe) -> None:
         response = client.products.with_raw_response.list()
@@ -154,7 +147,6 @@ class TestProducts:
         product = response.parse()
         assert_matches_type(SyncMyCursorIDPage[Product], product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stripe) -> None:
         with client.products.with_streaming_response.list() as response:
@@ -172,7 +164,6 @@ class TestAsyncProducts:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncStripe) -> None:
         product = await async_client.products.create(
@@ -180,7 +171,6 @@ class TestAsyncProducts:
         )
         assert_matches_type(Product, product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStripe) -> None:
         product = await async_client.products.create(
@@ -245,7 +235,6 @@ class TestAsyncProducts:
         )
         assert_matches_type(Product, product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStripe) -> None:
         response = await async_client.products.with_raw_response.create(
@@ -257,7 +246,6 @@ class TestAsyncProducts:
         product = await response.parse()
         assert_matches_type(Product, product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStripe) -> None:
         async with async_client.products.with_streaming_response.create(
@@ -271,13 +259,11 @@ class TestAsyncProducts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         product = await async_client.products.list()
         assert_matches_type(AsyncMyCursorIDPage[Product], product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         product = await async_client.products.list(
@@ -298,7 +284,6 @@ class TestAsyncProducts:
         )
         assert_matches_type(AsyncMyCursorIDPage[Product], product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.products.with_raw_response.list()
@@ -308,7 +293,6 @@ class TestAsyncProducts:
         product = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[Product], product, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.products.with_streaming_response.list() as response:
