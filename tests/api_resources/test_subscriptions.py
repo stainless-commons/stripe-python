@@ -20,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSubscriptions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Stripe) -> None:
         subscription = client.subscriptions.update(
@@ -28,7 +27,6 @@ class TestSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Stripe) -> None:
         subscription = client.subscriptions.update(
@@ -202,7 +200,6 @@ class TestSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Stripe) -> None:
         response = client.subscriptions.with_raw_response.update(
@@ -214,7 +211,6 @@ class TestSubscriptions:
         subscription = response.parse()
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Stripe) -> None:
         with client.subscriptions.with_streaming_response.update(
@@ -228,7 +224,6 @@ class TestSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Stripe) -> None:
         with pytest.raises(
@@ -238,13 +233,11 @@ class TestSubscriptions:
                 subscription_exposed_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         subscription = client.subscriptions.list()
         assert_matches_type(SyncMyCursorIDPage[Subscription], subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stripe) -> None:
         subscription = client.subscriptions.list(
@@ -280,7 +273,6 @@ class TestSubscriptions:
         )
         assert_matches_type(SyncMyCursorIDPage[Subscription], subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stripe) -> None:
         response = client.subscriptions.with_raw_response.list()
@@ -290,7 +282,6 @@ class TestSubscriptions:
         subscription = response.parse()
         assert_matches_type(SyncMyCursorIDPage[Subscription], subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stripe) -> None:
         with client.subscriptions.with_streaming_response.list() as response:
@@ -302,7 +293,6 @@ class TestSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_cancel(self, client: Stripe) -> None:
         subscription = client.subscriptions.cancel(
@@ -310,7 +300,6 @@ class TestSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_cancel_with_all_params(self, client: Stripe) -> None:
         subscription = client.subscriptions.cancel(
@@ -325,7 +314,6 @@ class TestSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_cancel(self, client: Stripe) -> None:
         response = client.subscriptions.with_raw_response.cancel(
@@ -337,7 +325,6 @@ class TestSubscriptions:
         subscription = response.parse()
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_cancel(self, client: Stripe) -> None:
         with client.subscriptions.with_streaming_response.cancel(
@@ -351,7 +338,6 @@ class TestSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_cancel(self, client: Stripe) -> None:
         with pytest.raises(
@@ -367,7 +353,6 @@ class TestAsyncSubscriptions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncStripe) -> None:
         subscription = await async_client.subscriptions.update(
@@ -375,7 +360,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncStripe) -> None:
         subscription = await async_client.subscriptions.update(
@@ -549,7 +533,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncStripe) -> None:
         response = await async_client.subscriptions.with_raw_response.update(
@@ -561,7 +544,6 @@ class TestAsyncSubscriptions:
         subscription = await response.parse()
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncStripe) -> None:
         async with async_client.subscriptions.with_streaming_response.update(
@@ -575,7 +557,6 @@ class TestAsyncSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncStripe) -> None:
         with pytest.raises(
@@ -585,13 +566,11 @@ class TestAsyncSubscriptions:
                 subscription_exposed_id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         subscription = await async_client.subscriptions.list()
         assert_matches_type(AsyncMyCursorIDPage[Subscription], subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         subscription = await async_client.subscriptions.list(
@@ -627,7 +606,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(AsyncMyCursorIDPage[Subscription], subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.subscriptions.with_raw_response.list()
@@ -637,7 +615,6 @@ class TestAsyncSubscriptions:
         subscription = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[Subscription], subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.subscriptions.with_streaming_response.list() as response:
@@ -649,7 +626,6 @@ class TestAsyncSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_cancel(self, async_client: AsyncStripe) -> None:
         subscription = await async_client.subscriptions.cancel(
@@ -657,7 +633,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_cancel_with_all_params(self, async_client: AsyncStripe) -> None:
         subscription = await async_client.subscriptions.cancel(
@@ -672,7 +647,6 @@ class TestAsyncSubscriptions:
         )
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_cancel(self, async_client: AsyncStripe) -> None:
         response = await async_client.subscriptions.with_raw_response.cancel(
@@ -684,7 +658,6 @@ class TestAsyncSubscriptions:
         subscription = await response.parse()
         assert_matches_type(Subscription, subscription, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_cancel(self, async_client: AsyncStripe) -> None:
         async with async_client.subscriptions.with_streaming_response.cancel(
@@ -698,7 +671,6 @@ class TestAsyncSubscriptions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_cancel(self, async_client: AsyncStripe) -> None:
         with pytest.raises(

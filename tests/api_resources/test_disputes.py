@@ -18,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDisputes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Stripe) -> None:
         dispute = client.disputes.update(
@@ -26,7 +25,6 @@ class TestDisputes:
         )
         assert_matches_type(Dispute, dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Stripe) -> None:
         dispute = client.disputes.update(
@@ -107,7 +105,6 @@ class TestDisputes:
         )
         assert_matches_type(Dispute, dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Stripe) -> None:
         response = client.disputes.with_raw_response.update(
@@ -119,7 +116,6 @@ class TestDisputes:
         dispute = response.parse()
         assert_matches_type(Dispute, dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Stripe) -> None:
         with client.disputes.with_streaming_response.update(
@@ -133,7 +129,6 @@ class TestDisputes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Stripe) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispute` but received ''"):
@@ -141,13 +136,11 @@ class TestDisputes:
                 dispute="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         dispute = client.disputes.list()
         assert_matches_type(SyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stripe) -> None:
         dispute = client.disputes.list(
@@ -166,7 +159,6 @@ class TestDisputes:
         )
         assert_matches_type(SyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stripe) -> None:
         response = client.disputes.with_raw_response.list()
@@ -176,7 +168,6 @@ class TestDisputes:
         dispute = response.parse()
         assert_matches_type(SyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stripe) -> None:
         with client.disputes.with_streaming_response.list() as response:
@@ -194,7 +185,6 @@ class TestAsyncDisputes:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.update(
@@ -202,7 +192,6 @@ class TestAsyncDisputes:
         )
         assert_matches_type(Dispute, dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.update(
@@ -283,7 +272,6 @@ class TestAsyncDisputes:
         )
         assert_matches_type(Dispute, dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncStripe) -> None:
         response = await async_client.disputes.with_raw_response.update(
@@ -295,7 +283,6 @@ class TestAsyncDisputes:
         dispute = await response.parse()
         assert_matches_type(Dispute, dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncStripe) -> None:
         async with async_client.disputes.with_streaming_response.update(
@@ -309,7 +296,6 @@ class TestAsyncDisputes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncStripe) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispute` but received ''"):
@@ -317,13 +303,11 @@ class TestAsyncDisputes:
                 dispute="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.list()
         assert_matches_type(AsyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         dispute = await async_client.disputes.list(
@@ -342,7 +326,6 @@ class TestAsyncDisputes:
         )
         assert_matches_type(AsyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.disputes.with_raw_response.list()
@@ -352,7 +335,6 @@ class TestAsyncDisputes:
         dispute = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[Dispute], dispute, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.disputes.with_streaming_response.list() as response:

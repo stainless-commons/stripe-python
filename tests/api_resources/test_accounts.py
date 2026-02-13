@@ -17,13 +17,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAccounts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Stripe) -> None:
         account = client.accounts.retrieve()
         assert_matches_type(Account, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Stripe) -> None:
         account = client.accounts.retrieve(
@@ -31,7 +29,6 @@ class TestAccounts:
         )
         assert_matches_type(Account, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Stripe) -> None:
         response = client.accounts.with_raw_response.retrieve()
@@ -41,7 +38,6 @@ class TestAccounts:
         account = response.parse()
         assert_matches_type(Account, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Stripe) -> None:
         with client.accounts.with_streaming_response.retrieve() as response:
@@ -59,13 +55,11 @@ class TestAsyncAccounts:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncStripe) -> None:
         account = await async_client.accounts.retrieve()
         assert_matches_type(Account, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncStripe) -> None:
         account = await async_client.accounts.retrieve(
@@ -73,7 +67,6 @@ class TestAsyncAccounts:
         )
         assert_matches_type(Account, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncStripe) -> None:
         response = await async_client.accounts.with_raw_response.retrieve()
@@ -83,7 +76,6 @@ class TestAsyncAccounts:
         account = await response.parse()
         assert_matches_type(Account, account, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncStripe) -> None:
         async with async_client.accounts.with_streaming_response.retrieve() as response:

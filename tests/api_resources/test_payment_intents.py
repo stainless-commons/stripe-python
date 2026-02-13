@@ -18,13 +18,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPaymentIntents:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         payment_intent = client.payment_intents.list()
         assert_matches_type(SyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stripe) -> None:
         payment_intent = client.payment_intents.list(
@@ -43,7 +41,6 @@ class TestPaymentIntents:
         )
         assert_matches_type(SyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stripe) -> None:
         response = client.payment_intents.with_raw_response.list()
@@ -53,7 +50,6 @@ class TestPaymentIntents:
         payment_intent = response.parse()
         assert_matches_type(SyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stripe) -> None:
         with client.payment_intents.with_streaming_response.list() as response:
@@ -71,13 +67,11 @@ class TestAsyncPaymentIntents:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         payment_intent = await async_client.payment_intents.list()
         assert_matches_type(AsyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         payment_intent = await async_client.payment_intents.list(
@@ -96,7 +90,6 @@ class TestAsyncPaymentIntents:
         )
         assert_matches_type(AsyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.payment_intents.with_raw_response.list()
@@ -106,7 +99,6 @@ class TestAsyncPaymentIntents:
         payment_intent = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[PaymentIntent], payment_intent, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.payment_intents.with_streaming_response.list() as response:
