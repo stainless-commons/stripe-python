@@ -9,7 +9,7 @@ import httpx
 
 from ..types import invoice_list_params, invoice_create_params, invoice_finalize_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -397,7 +397,7 @@ class InvoicesResource(SyncAPIResource):
         if not invoice:
             raise ValueError(f"Expected a non-empty value for `invoice` but received {invoice!r}")
         return self._post(
-            f"/v1/invoices/{invoice}/finalize",
+            path_template("/v1/invoices/{invoice}/finalize", invoice=invoice),
             body=maybe_transform(
                 {
                     "auto_advance": auto_advance,
@@ -784,7 +784,7 @@ class AsyncInvoicesResource(AsyncAPIResource):
         if not invoice:
             raise ValueError(f"Expected a non-empty value for `invoice` but received {invoice!r}")
         return await self._post(
-            f"/v1/invoices/{invoice}/finalize",
+            path_template("/v1/invoices/{invoice}/finalize", invoice=invoice),
             body=await async_maybe_transform(
                 {
                     "auto_advance": auto_advance,

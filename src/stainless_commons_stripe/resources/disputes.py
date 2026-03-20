@@ -9,7 +9,7 @@ import httpx
 
 from ..types import dispute_list_params, dispute_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -94,7 +94,7 @@ class DisputesResource(SyncAPIResource):
         if not dispute:
             raise ValueError(f"Expected a non-empty value for `dispute` but received {dispute!r}")
         return self._post(
-            f"/v1/disputes/{dispute}",
+            path_template("/v1/disputes/{dispute}", dispute=dispute),
             body=maybe_transform(
                 {
                     "evidence": evidence,
@@ -255,7 +255,7 @@ class AsyncDisputesResource(AsyncAPIResource):
         if not dispute:
             raise ValueError(f"Expected a non-empty value for `dispute` but received {dispute!r}")
         return await self._post(
-            f"/v1/disputes/{dispute}",
+            path_template("/v1/disputes/{dispute}", dispute=dispute),
             body=await async_maybe_transform(
                 {
                     "evidence": evidence,
