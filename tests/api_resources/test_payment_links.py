@@ -110,10 +110,10 @@ class TestPaymentLinks:
                 }
             ],
             custom_text={
-                "after_submit": {"message": "message"},
-                "shipping_address": {"message": "message"},
-                "submit": {"message": "message"},
-                "terms_of_service_acceptance": {"message": "message"},
+                "after_submit": "",
+                "shipping_address": "",
+                "submit": "",
+                "terms_of_service_acceptance": "",
             },
             customer_creation="always",
             expand=["string"],
@@ -121,24 +121,16 @@ class TestPaymentLinks:
             invoice_creation={
                 "enabled": True,
                 "invoice_data": {
-                    "account_tax_ids": ["string"],
-                    "custom_fields": [
-                        {
-                            "name": "name",
-                            "value": "value",
-                        }
-                    ],
+                    "account_tax_ids": "",
+                    "custom_fields": "",
                     "description": "description",
                     "footer": "footer",
                     "issuer": {
                         "type": "account",
                         "account": "account",
                     },
-                    "metadata": {"foo": "string"},
-                    "rendering_options": {
-                        "amount_tax_display": "",
-                        "template": "template",
-                    },
+                    "metadata": "",
+                    "rendering_options": "",
                 },
             },
             metadata={"foo": "string"},
@@ -326,10 +318,10 @@ class TestAsyncPaymentLinks:
                 }
             ],
             custom_text={
-                "after_submit": {"message": "message"},
-                "shipping_address": {"message": "message"},
-                "submit": {"message": "message"},
-                "terms_of_service_acceptance": {"message": "message"},
+                "after_submit": "",
+                "shipping_address": "",
+                "submit": "",
+                "terms_of_service_acceptance": "",
             },
             customer_creation="always",
             expand=["string"],
@@ -337,24 +329,16 @@ class TestAsyncPaymentLinks:
             invoice_creation={
                 "enabled": True,
                 "invoice_data": {
-                    "account_tax_ids": ["string"],
-                    "custom_fields": [
-                        {
-                            "name": "name",
-                            "value": "value",
-                        }
-                    ],
+                    "account_tax_ids": "",
+                    "custom_fields": "",
                     "description": "description",
                     "footer": "footer",
                     "issuer": {
                         "type": "account",
                         "account": "account",
                     },
-                    "metadata": {"foo": "string"},
-                    "rendering_options": {
-                        "amount_tax_display": "",
-                        "template": "template",
-                    },
+                    "metadata": "",
+                    "rendering_options": "",
                 },
             },
             metadata={"foo": "string"},

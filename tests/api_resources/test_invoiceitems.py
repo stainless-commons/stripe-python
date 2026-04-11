@@ -31,16 +31,10 @@ class TestInvoiceitems:
             customer_account="customer_account",
             description="description",
             discountable=True,
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            discounts="",
             expand=["string"],
             invoice="invoice",
-            metadata={"foo": "string"},
+            metadata="",
             period={
                 "end": 0,
                 "start": 0,
@@ -56,7 +50,7 @@ class TestInvoiceitems:
             quantity=0,
             subscription="subscription",
             tax_behavior="exclusive",
-            tax_code="string",
+            tax_code="",
             tax_rates=["string"],
             unit_amount_decimal="unit_amount_decimal",
         )
@@ -102,16 +96,10 @@ class TestAsyncInvoiceitems:
             customer_account="customer_account",
             description="description",
             discountable=True,
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            discounts="",
             expand=["string"],
             invoice="invoice",
-            metadata={"foo": "string"},
+            metadata="",
             period={
                 "end": 0,
                 "start": 0,
@@ -127,7 +115,7 @@ class TestAsyncInvoiceitems:
             quantity=0,
             subscription="subscription",
             tax_behavior="exclusive",
-            tax_code="string",
+            tax_code="",
             tax_rates=["string"],
             unit_amount_decimal="unit_amount_decimal",
         )

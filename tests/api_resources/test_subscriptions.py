@@ -60,10 +60,10 @@ class TestSubscriptions:
                         "unit_amount_decimal": "unit_amount_decimal",
                     },
                     "quantity": 0,
-                    "tax_rates": ["string"],
+                    "tax_rates": "",
                 }
             ],
-            application_fee_percent=0,
+            application_fee_percent="",
             automatic_tax={
                 "enabled": True,
                 "liability": {
@@ -72,32 +72,23 @@ class TestSubscriptions:
                 },
             },
             billing_cycle_anchor="now",
-            billing_thresholds={
-                "amount_gte": 0,
-                "reset_billing_cycle_anchor": True,
-            },
+            billing_thresholds="",
             cancel_at="",
             cancel_at_period_end=True,
             cancellation_details={
-                "comment": "string",
+                "comment": "",
                 "feedback": "",
             },
             collection_method="charge_automatically",
             days_until_due=0,
             default_payment_method="default_payment_method",
-            default_source="string",
-            default_tax_rates=["string"],
-            description="string",
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            default_source="",
+            default_tax_rates="",
+            description="",
+            discounts="",
             expand=["string"],
             invoice_settings={
-                "account_tax_ids": ["string"],
+                "account_tax_ids": "",
                 "issuer": {
                     "type": "account",
                     "account": "account",
@@ -106,17 +97,11 @@ class TestSubscriptions:
             items=[
                 {
                     "id": "id",
-                    "billing_thresholds": {"usage_gte": 0},
+                    "billing_thresholds": "",
                     "clear_usage": True,
                     "deleted": True,
-                    "discounts": [
-                        {
-                            "coupon": "coupon",
-                            "discount": "discount",
-                            "promotion_code": "promotion_code",
-                        }
-                    ],
-                    "metadata": {"foo": "string"},
+                    "discounts": "",
+                    "metadata": "",
                     "price": "price",
                     "price_data": {
                         "currency": "currency",
@@ -130,70 +115,32 @@ class TestSubscriptions:
                         "unit_amount_decimal": "unit_amount_decimal",
                     },
                     "quantity": 0,
-                    "tax_rates": ["string"],
+                    "tax_rates": "",
                 }
             ],
-            metadata={"foo": "string"},
+            metadata="",
             off_session=True,
-            on_behalf_of="string",
-            pause_collection={
-                "behavior": "keep_as_draft",
-                "resumes_at": 0,
-            },
+            on_behalf_of="",
+            pause_collection="",
             payment_behavior="allow_incomplete",
             payment_settings={
                 "payment_method_options": {
-                    "acss_debit": {
-                        "mandate_options": {"transaction_type": "business"},
-                        "verification_method": "automatic",
-                    },
-                    "bancontact": {"preferred_language": "de"},
-                    "card": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "amount_type": "fixed",
-                            "description": "description",
-                        },
-                        "network": "amex",
-                        "request_three_d_secure": "any",
-                    },
-                    "customer_balance": {
-                        "bank_transfer": {
-                            "eu_bank_transfer": {"country": "country"},
-                            "type": "type",
-                        },
-                        "funding_type": "funding_type",
-                    },
+                    "acss_debit": "",
+                    "bancontact": "",
+                    "card": "",
+                    "customer_balance": "",
                     "konbini": "",
-                    "payto": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "purpose": "dependant_support",
-                        }
-                    },
+                    "payto": "",
                     "sepa_debit": "",
-                    "us_bank_account": {
-                        "financial_connections": {
-                            "filters": {"account_subcategories": ["checking"]},
-                            "permissions": ["balances"],
-                            "prefetch": ["balances"],
-                        },
-                        "verification_method": "automatic",
-                    },
+                    "us_bank_account": "",
                 },
-                "payment_method_types": ["ach_credit_transfer"],
+                "payment_method_types": "",
                 "save_default_payment_method": "off",
             },
-            pending_invoice_item_interval={
-                "interval": "day",
-                "interval_count": 0,
-            },
+            pending_invoice_item_interval="",
             proration_behavior="always_invoice",
             proration_date=0,
-            transfer_data={
-                "destination": "destination",
-                "amount_percent": 0,
-            },
+            transfer_data="",
             trial_end="now",
             trial_from_plan=True,
             trial_settings={"end_behavior": {"missing_payment_method": "cancel"}},
@@ -305,7 +252,7 @@ class TestSubscriptions:
         subscription = client.subscriptions.cancel(
             subscription_exposed_id="subscription_exposed_id",
             cancellation_details={
-                "comment": "string",
+                "comment": "",
                 "feedback": "",
             },
             expand=["string"],
@@ -393,10 +340,10 @@ class TestAsyncSubscriptions:
                         "unit_amount_decimal": "unit_amount_decimal",
                     },
                     "quantity": 0,
-                    "tax_rates": ["string"],
+                    "tax_rates": "",
                 }
             ],
-            application_fee_percent=0,
+            application_fee_percent="",
             automatic_tax={
                 "enabled": True,
                 "liability": {
@@ -405,32 +352,23 @@ class TestAsyncSubscriptions:
                 },
             },
             billing_cycle_anchor="now",
-            billing_thresholds={
-                "amount_gte": 0,
-                "reset_billing_cycle_anchor": True,
-            },
+            billing_thresholds="",
             cancel_at="",
             cancel_at_period_end=True,
             cancellation_details={
-                "comment": "string",
+                "comment": "",
                 "feedback": "",
             },
             collection_method="charge_automatically",
             days_until_due=0,
             default_payment_method="default_payment_method",
-            default_source="string",
-            default_tax_rates=["string"],
-            description="string",
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            default_source="",
+            default_tax_rates="",
+            description="",
+            discounts="",
             expand=["string"],
             invoice_settings={
-                "account_tax_ids": ["string"],
+                "account_tax_ids": "",
                 "issuer": {
                     "type": "account",
                     "account": "account",
@@ -439,17 +377,11 @@ class TestAsyncSubscriptions:
             items=[
                 {
                     "id": "id",
-                    "billing_thresholds": {"usage_gte": 0},
+                    "billing_thresholds": "",
                     "clear_usage": True,
                     "deleted": True,
-                    "discounts": [
-                        {
-                            "coupon": "coupon",
-                            "discount": "discount",
-                            "promotion_code": "promotion_code",
-                        }
-                    ],
-                    "metadata": {"foo": "string"},
+                    "discounts": "",
+                    "metadata": "",
                     "price": "price",
                     "price_data": {
                         "currency": "currency",
@@ -463,70 +395,32 @@ class TestAsyncSubscriptions:
                         "unit_amount_decimal": "unit_amount_decimal",
                     },
                     "quantity": 0,
-                    "tax_rates": ["string"],
+                    "tax_rates": "",
                 }
             ],
-            metadata={"foo": "string"},
+            metadata="",
             off_session=True,
-            on_behalf_of="string",
-            pause_collection={
-                "behavior": "keep_as_draft",
-                "resumes_at": 0,
-            },
+            on_behalf_of="",
+            pause_collection="",
             payment_behavior="allow_incomplete",
             payment_settings={
                 "payment_method_options": {
-                    "acss_debit": {
-                        "mandate_options": {"transaction_type": "business"},
-                        "verification_method": "automatic",
-                    },
-                    "bancontact": {"preferred_language": "de"},
-                    "card": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "amount_type": "fixed",
-                            "description": "description",
-                        },
-                        "network": "amex",
-                        "request_three_d_secure": "any",
-                    },
-                    "customer_balance": {
-                        "bank_transfer": {
-                            "eu_bank_transfer": {"country": "country"},
-                            "type": "type",
-                        },
-                        "funding_type": "funding_type",
-                    },
+                    "acss_debit": "",
+                    "bancontact": "",
+                    "card": "",
+                    "customer_balance": "",
                     "konbini": "",
-                    "payto": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "purpose": "dependant_support",
-                        }
-                    },
+                    "payto": "",
                     "sepa_debit": "",
-                    "us_bank_account": {
-                        "financial_connections": {
-                            "filters": {"account_subcategories": ["checking"]},
-                            "permissions": ["balances"],
-                            "prefetch": ["balances"],
-                        },
-                        "verification_method": "automatic",
-                    },
+                    "us_bank_account": "",
                 },
-                "payment_method_types": ["ach_credit_transfer"],
+                "payment_method_types": "",
                 "save_default_payment_method": "off",
             },
-            pending_invoice_item_interval={
-                "interval": "day",
-                "interval_count": 0,
-            },
+            pending_invoice_item_interval="",
             proration_behavior="always_invoice",
             proration_date=0,
-            transfer_data={
-                "destination": "destination",
-                "amount_percent": 0,
-            },
+            transfer_data="",
             trial_end="now",
             trial_from_plan=True,
             trial_settings={"end_behavior": {"missing_payment_method": "cancel"}},
@@ -638,7 +532,7 @@ class TestAsyncSubscriptions:
         subscription = await async_client.subscriptions.cancel(
             subscription_exposed_id="subscription_exposed_id",
             cancellation_details={
-                "comment": "string",
+                "comment": "",
                 "feedback": "",
             },
             expand=["string"],
