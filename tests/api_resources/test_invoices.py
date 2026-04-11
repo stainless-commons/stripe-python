@@ -26,7 +26,7 @@ class TestInvoices:
     @parametrize
     def test_method_create_with_all_params(self, client: Stripe) -> None:
         invoice = client.invoices.create(
-            account_tax_ids=["string"],
+            account_tax_ids="",
             application_fee_amount=0,
             auto_advance=True,
             automatic_tax={
@@ -39,12 +39,7 @@ class TestInvoices:
             automatically_finalizes_at=0,
             collection_method="charge_automatically",
             currency="currency",
-            custom_fields=[
-                {
-                    "name": "name",
-                    "value": "value",
-                }
-            ],
+            custom_fields="",
             customer="customer",
             customer_account="customer_account",
             days_until_due=0,
@@ -52,13 +47,7 @@ class TestInvoices:
             default_source="default_source",
             default_tax_rates=["string"],
             description="description",
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            discounts="",
             due_date=0,
             effective_at=0,
             expand=["string"],
@@ -71,60 +60,29 @@ class TestInvoices:
                 "type": "account",
                 "account": "account",
             },
-            metadata={"foo": "string"},
+            metadata="",
             number="number",
             on_behalf_of="on_behalf_of",
             payment_settings={
-                "default_mandate": "string",
+                "default_mandate": "",
                 "payment_method_options": {
-                    "acss_debit": {
-                        "mandate_options": {"transaction_type": "business"},
-                        "verification_method": "automatic",
-                    },
-                    "bancontact": {"preferred_language": "de"},
-                    "card": {
-                        "installments": {
-                            "enabled": True,
-                            "plan": {
-                                "type": "bonus",
-                                "count": 0,
-                                "interval": "month",
-                            },
-                        },
-                        "request_three_d_secure": "any",
-                    },
-                    "customer_balance": {
-                        "bank_transfer": {
-                            "eu_bank_transfer": {"country": "country"},
-                            "type": "type",
-                        },
-                        "funding_type": "funding_type",
-                    },
+                    "acss_debit": "",
+                    "bancontact": "",
+                    "card": "",
+                    "customer_balance": "",
                     "konbini": "",
-                    "payto": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "purpose": "dependant_support",
-                        }
-                    },
+                    "payto": "",
                     "sepa_debit": "",
-                    "us_bank_account": {
-                        "financial_connections": {
-                            "filters": {"account_subcategories": ["checking"]},
-                            "permissions": ["balances"],
-                            "prefetch": ["balances"],
-                        },
-                        "verification_method": "automatic",
-                    },
+                    "us_bank_account": "",
                 },
-                "payment_method_types": ["ach_credit_transfer"],
+                "payment_method_types": "",
             },
             pending_invoice_items_behavior="exclude",
             rendering={
                 "amount_tax_display": "",
                 "pdf": {"page_size": "a4"},
                 "template": "template",
-                "template_version": 0,
+                "template_version": "",
             },
             shipping_cost={
                 "shipping_rate": "shipping_rate",
@@ -166,7 +124,7 @@ class TestInvoices:
                     "state": "state",
                 },
                 "name": "name",
-                "phone": "string",
+                "phone": "",
             },
             statement_descriptor="statement_descriptor",
             subscription="subscription",
@@ -310,7 +268,7 @@ class TestAsyncInvoices:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStripe) -> None:
         invoice = await async_client.invoices.create(
-            account_tax_ids=["string"],
+            account_tax_ids="",
             application_fee_amount=0,
             auto_advance=True,
             automatic_tax={
@@ -323,12 +281,7 @@ class TestAsyncInvoices:
             automatically_finalizes_at=0,
             collection_method="charge_automatically",
             currency="currency",
-            custom_fields=[
-                {
-                    "name": "name",
-                    "value": "value",
-                }
-            ],
+            custom_fields="",
             customer="customer",
             customer_account="customer_account",
             days_until_due=0,
@@ -336,13 +289,7 @@ class TestAsyncInvoices:
             default_source="default_source",
             default_tax_rates=["string"],
             description="description",
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            discounts="",
             due_date=0,
             effective_at=0,
             expand=["string"],
@@ -355,60 +302,29 @@ class TestAsyncInvoices:
                 "type": "account",
                 "account": "account",
             },
-            metadata={"foo": "string"},
+            metadata="",
             number="number",
             on_behalf_of="on_behalf_of",
             payment_settings={
-                "default_mandate": "string",
+                "default_mandate": "",
                 "payment_method_options": {
-                    "acss_debit": {
-                        "mandate_options": {"transaction_type": "business"},
-                        "verification_method": "automatic",
-                    },
-                    "bancontact": {"preferred_language": "de"},
-                    "card": {
-                        "installments": {
-                            "enabled": True,
-                            "plan": {
-                                "type": "bonus",
-                                "count": 0,
-                                "interval": "month",
-                            },
-                        },
-                        "request_three_d_secure": "any",
-                    },
-                    "customer_balance": {
-                        "bank_transfer": {
-                            "eu_bank_transfer": {"country": "country"},
-                            "type": "type",
-                        },
-                        "funding_type": "funding_type",
-                    },
+                    "acss_debit": "",
+                    "bancontact": "",
+                    "card": "",
+                    "customer_balance": "",
                     "konbini": "",
-                    "payto": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "purpose": "dependant_support",
-                        }
-                    },
+                    "payto": "",
                     "sepa_debit": "",
-                    "us_bank_account": {
-                        "financial_connections": {
-                            "filters": {"account_subcategories": ["checking"]},
-                            "permissions": ["balances"],
-                            "prefetch": ["balances"],
-                        },
-                        "verification_method": "automatic",
-                    },
+                    "us_bank_account": "",
                 },
-                "payment_method_types": ["ach_credit_transfer"],
+                "payment_method_types": "",
             },
             pending_invoice_items_behavior="exclude",
             rendering={
                 "amount_tax_display": "",
                 "pdf": {"page_size": "a4"},
                 "template": "template",
-                "template_version": 0,
+                "template_version": "",
             },
             shipping_cost={
                 "shipping_rate": "shipping_rate",
@@ -450,7 +366,7 @@ class TestAsyncInvoices:
                     "state": "state",
                 },
                 "name": "name",
-                "phone": "string",
+                "phone": "",
             },
             statement_descriptor="statement_descriptor",
             subscription="subscription",

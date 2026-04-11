@@ -43,47 +43,7 @@ class TestDisputes:
                 "duplicate_charge_documentation": "duplicate_charge_documentation",
                 "duplicate_charge_explanation": "duplicate_charge_explanation",
                 "duplicate_charge_id": "duplicate_charge_id",
-                "enhanced_evidence": {
-                    "visa_compelling_evidence_3": {
-                        "disputed_transaction": {
-                            "customer_account_id": "string",
-                            "customer_device_fingerprint": "string",
-                            "customer_device_id": "string",
-                            "customer_email_address": "string",
-                            "customer_purchase_ip": "string",
-                            "merchandise_or_services": "merchandise",
-                            "product_description": "string",
-                            "shipping_address": {
-                                "city": "string",
-                                "country": "string",
-                                "line1": "string",
-                                "line2": "string",
-                                "postal_code": "string",
-                                "state": "string",
-                            },
-                        },
-                        "prior_undisputed_transactions": [
-                            {
-                                "charge": "charge",
-                                "customer_account_id": "string",
-                                "customer_device_fingerprint": "string",
-                                "customer_device_id": "string",
-                                "customer_email_address": "string",
-                                "customer_purchase_ip": "string",
-                                "product_description": "string",
-                                "shipping_address": {
-                                    "city": "string",
-                                    "country": "string",
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "postal_code": "string",
-                                    "state": "string",
-                                },
-                            }
-                        ],
-                    },
-                    "visa_compliance": {"fee_acknowledged": True},
-                },
+                "enhanced_evidence": "",
                 "product_description": "product_description",
                 "receipt": "receipt",
                 "refund_policy": "refund_policy",
@@ -100,7 +60,7 @@ class TestDisputes:
                 "uncategorized_text": "uncategorized_text",
             },
             expand=["string"],
-            metadata={"foo": "string"},
+            metadata="",
             submit=True,
         )
         assert_matches_type(Dispute, dispute, path=["response"])
@@ -210,47 +170,7 @@ class TestAsyncDisputes:
                 "duplicate_charge_documentation": "duplicate_charge_documentation",
                 "duplicate_charge_explanation": "duplicate_charge_explanation",
                 "duplicate_charge_id": "duplicate_charge_id",
-                "enhanced_evidence": {
-                    "visa_compelling_evidence_3": {
-                        "disputed_transaction": {
-                            "customer_account_id": "string",
-                            "customer_device_fingerprint": "string",
-                            "customer_device_id": "string",
-                            "customer_email_address": "string",
-                            "customer_purchase_ip": "string",
-                            "merchandise_or_services": "merchandise",
-                            "product_description": "string",
-                            "shipping_address": {
-                                "city": "string",
-                                "country": "string",
-                                "line1": "string",
-                                "line2": "string",
-                                "postal_code": "string",
-                                "state": "string",
-                            },
-                        },
-                        "prior_undisputed_transactions": [
-                            {
-                                "charge": "charge",
-                                "customer_account_id": "string",
-                                "customer_device_fingerprint": "string",
-                                "customer_device_id": "string",
-                                "customer_email_address": "string",
-                                "customer_purchase_ip": "string",
-                                "product_description": "string",
-                                "shipping_address": {
-                                    "city": "string",
-                                    "country": "string",
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "postal_code": "string",
-                                    "state": "string",
-                                },
-                            }
-                        ],
-                    },
-                    "visa_compliance": {"fee_acknowledged": True},
-                },
+                "enhanced_evidence": "",
                 "product_description": "product_description",
                 "receipt": "receipt",
                 "refund_policy": "refund_policy",
@@ -267,7 +187,7 @@ class TestAsyncDisputes:
                 "uncategorized_text": "uncategorized_text",
             },
             expand=["string"],
-            metadata={"foo": "string"},
+            metadata="",
             submit=True,
         )
         assert_matches_type(Dispute, dispute, path=["response"])
