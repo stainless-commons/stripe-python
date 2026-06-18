@@ -9,7 +9,7 @@ import httpx
 
 from ..types import subscription_list_params, subscription_cancel_params, subscription_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -287,7 +287,9 @@ class SubscriptionsResource(SyncAPIResource):
                 f"Expected a non-empty value for `subscription_exposed_id` but received {subscription_exposed_id!r}"
             )
         return self._post(
-            f"/v1/subscriptions/{subscription_exposed_id}",
+            path_template(
+                "/v1/subscriptions/{subscription_exposed_id}", subscription_exposed_id=subscription_exposed_id
+            ),
             body=maybe_transform(
                 {
                     "add_invoice_items": add_invoice_items,
@@ -504,7 +506,9 @@ class SubscriptionsResource(SyncAPIResource):
                 f"Expected a non-empty value for `subscription_exposed_id` but received {subscription_exposed_id!r}"
             )
         return self._delete(
-            f"/v1/subscriptions/{subscription_exposed_id}",
+            path_template(
+                "/v1/subscriptions/{subscription_exposed_id}", subscription_exposed_id=subscription_exposed_id
+            ),
             body=maybe_transform(
                 {
                     "cancellation_details": cancellation_details,
@@ -783,7 +787,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `subscription_exposed_id` but received {subscription_exposed_id!r}"
             )
         return await self._post(
-            f"/v1/subscriptions/{subscription_exposed_id}",
+            path_template(
+                "/v1/subscriptions/{subscription_exposed_id}", subscription_exposed_id=subscription_exposed_id
+            ),
             body=await async_maybe_transform(
                 {
                     "add_invoice_items": add_invoice_items,
@@ -1000,7 +1006,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `subscription_exposed_id` but received {subscription_exposed_id!r}"
             )
         return await self._delete(
-            f"/v1/subscriptions/{subscription_exposed_id}",
+            path_template(
+                "/v1/subscriptions/{subscription_exposed_id}", subscription_exposed_id=subscription_exposed_id
+            ),
             body=await async_maybe_transform(
                 {
                     "cancellation_details": cancellation_details,

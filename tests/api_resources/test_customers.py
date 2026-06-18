@@ -18,67 +18,39 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCustomers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Stripe) -> None:
         customer = client.customers.create()
         assert_matches_type(Customer, customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Stripe) -> None:
         customer = client.customers.create(
-            address={
-                "city": "city",
-                "country": "country",
-                "line1": "line1",
-                "line2": "line2",
-                "postal_code": "postal_code",
-                "state": "state",
-            },
+            address="",
             balance=0,
-            business_name="string",
+            business_name="",
             cash_balance={"settings": {"reconciliation_mode": "automatic"}},
             description="description",
             email="email",
             expand=["string"],
-            individual_name="string",
+            individual_name="",
             invoice_prefix="invoice_prefix",
             invoice_settings={
-                "custom_fields": [
-                    {
-                        "name": "name",
-                        "value": "value",
-                    }
-                ],
+                "custom_fields": "",
                 "default_payment_method": "default_payment_method",
                 "footer": "footer",
-                "rendering_options": {
-                    "amount_tax_display": "",
-                    "template": "template",
-                },
+                "rendering_options": "",
             },
-            metadata={"foo": "string"},
+            metadata="",
             name="name",
             next_invoice_sequence=0,
             payment_method="payment_method",
             phone="phone",
             preferred_locales=["string"],
-            shipping={
-                "address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "postal_code": "postal_code",
-                    "state": "state",
-                },
-                "name": "name",
-                "phone": "phone",
-            },
+            shipping="",
             source="source",
             tax={
-                "ip_address": "string",
+                "ip_address": "",
                 "validate_location": "deferred",
             },
             tax_exempt="",
@@ -92,7 +64,6 @@ class TestCustomers:
         )
         assert_matches_type(Customer, customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Stripe) -> None:
         response = client.customers.with_raw_response.create()
@@ -102,7 +73,6 @@ class TestCustomers:
         customer = response.parse()
         assert_matches_type(Customer, customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Stripe) -> None:
         with client.customers.with_streaming_response.create() as response:
@@ -114,13 +84,11 @@ class TestCustomers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         customer = client.customers.list()
         assert_matches_type(SyncMyCursorIDPage[Customer], customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stripe) -> None:
         customer = client.customers.list(
@@ -139,7 +107,6 @@ class TestCustomers:
         )
         assert_matches_type(SyncMyCursorIDPage[Customer], customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stripe) -> None:
         response = client.customers.with_raw_response.list()
@@ -149,7 +116,6 @@ class TestCustomers:
         customer = response.parse()
         assert_matches_type(SyncMyCursorIDPage[Customer], customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stripe) -> None:
         with client.customers.with_streaming_response.list() as response:
@@ -167,67 +133,39 @@ class TestAsyncCustomers:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.create()
         assert_matches_type(Customer, customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.create(
-            address={
-                "city": "city",
-                "country": "country",
-                "line1": "line1",
-                "line2": "line2",
-                "postal_code": "postal_code",
-                "state": "state",
-            },
+            address="",
             balance=0,
-            business_name="string",
+            business_name="",
             cash_balance={"settings": {"reconciliation_mode": "automatic"}},
             description="description",
             email="email",
             expand=["string"],
-            individual_name="string",
+            individual_name="",
             invoice_prefix="invoice_prefix",
             invoice_settings={
-                "custom_fields": [
-                    {
-                        "name": "name",
-                        "value": "value",
-                    }
-                ],
+                "custom_fields": "",
                 "default_payment_method": "default_payment_method",
                 "footer": "footer",
-                "rendering_options": {
-                    "amount_tax_display": "",
-                    "template": "template",
-                },
+                "rendering_options": "",
             },
-            metadata={"foo": "string"},
+            metadata="",
             name="name",
             next_invoice_sequence=0,
             payment_method="payment_method",
             phone="phone",
             preferred_locales=["string"],
-            shipping={
-                "address": {
-                    "city": "city",
-                    "country": "country",
-                    "line1": "line1",
-                    "line2": "line2",
-                    "postal_code": "postal_code",
-                    "state": "state",
-                },
-                "name": "name",
-                "phone": "phone",
-            },
+            shipping="",
             source="source",
             tax={
-                "ip_address": "string",
+                "ip_address": "",
                 "validate_location": "deferred",
             },
             tax_exempt="",
@@ -241,7 +179,6 @@ class TestAsyncCustomers:
         )
         assert_matches_type(Customer, customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStripe) -> None:
         response = await async_client.customers.with_raw_response.create()
@@ -251,7 +188,6 @@ class TestAsyncCustomers:
         customer = await response.parse()
         assert_matches_type(Customer, customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStripe) -> None:
         async with async_client.customers.with_streaming_response.create() as response:
@@ -263,13 +199,11 @@ class TestAsyncCustomers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.list()
         assert_matches_type(AsyncMyCursorIDPage[Customer], customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         customer = await async_client.customers.list(
@@ -288,7 +222,6 @@ class TestAsyncCustomers:
         )
         assert_matches_type(AsyncMyCursorIDPage[Customer], customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.customers.with_raw_response.list()
@@ -298,7 +231,6 @@ class TestAsyncCustomers:
         customer = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[Customer], customer, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.customers.with_streaming_response.list() as response:

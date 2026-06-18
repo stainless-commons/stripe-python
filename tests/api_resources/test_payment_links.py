@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPaymentLinks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Stripe) -> None:
         payment_link = client.payment_links.create(
@@ -25,7 +24,6 @@ class TestPaymentLinks:
         )
         assert_matches_type(PaymentLinkCreateResponse, payment_link, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Stripe) -> None:
         payment_link = client.payment_links.create(
@@ -112,10 +110,10 @@ class TestPaymentLinks:
                 }
             ],
             custom_text={
-                "after_submit": {"message": "message"},
-                "shipping_address": {"message": "message"},
-                "submit": {"message": "message"},
-                "terms_of_service_acceptance": {"message": "message"},
+                "after_submit": "",
+                "shipping_address": "",
+                "submit": "",
+                "terms_of_service_acceptance": "",
             },
             customer_creation="always",
             expand=["string"],
@@ -123,24 +121,16 @@ class TestPaymentLinks:
             invoice_creation={
                 "enabled": True,
                 "invoice_data": {
-                    "account_tax_ids": ["string"],
-                    "custom_fields": [
-                        {
-                            "name": "name",
-                            "value": "value",
-                        }
-                    ],
+                    "account_tax_ids": "",
+                    "custom_fields": "",
                     "description": "description",
                     "footer": "footer",
                     "issuer": {
                         "type": "account",
                         "account": "account",
                     },
-                    "metadata": {"foo": "string"},
-                    "rendering_options": {
-                        "amount_tax_display": "",
-                        "template": "template",
-                    },
+                    "metadata": "",
+                    "rendering_options": "",
                 },
             },
             metadata={"foo": "string"},
@@ -205,7 +195,6 @@ class TestPaymentLinks:
         )
         assert_matches_type(PaymentLinkCreateResponse, payment_link, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Stripe) -> None:
         response = client.payment_links.with_raw_response.create(
@@ -217,7 +206,6 @@ class TestPaymentLinks:
         payment_link = response.parse()
         assert_matches_type(PaymentLinkCreateResponse, payment_link, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Stripe) -> None:
         with client.payment_links.with_streaming_response.create(
@@ -237,7 +225,6 @@ class TestAsyncPaymentLinks:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncStripe) -> None:
         payment_link = await async_client.payment_links.create(
@@ -245,7 +232,6 @@ class TestAsyncPaymentLinks:
         )
         assert_matches_type(PaymentLinkCreateResponse, payment_link, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStripe) -> None:
         payment_link = await async_client.payment_links.create(
@@ -332,10 +318,10 @@ class TestAsyncPaymentLinks:
                 }
             ],
             custom_text={
-                "after_submit": {"message": "message"},
-                "shipping_address": {"message": "message"},
-                "submit": {"message": "message"},
-                "terms_of_service_acceptance": {"message": "message"},
+                "after_submit": "",
+                "shipping_address": "",
+                "submit": "",
+                "terms_of_service_acceptance": "",
             },
             customer_creation="always",
             expand=["string"],
@@ -343,24 +329,16 @@ class TestAsyncPaymentLinks:
             invoice_creation={
                 "enabled": True,
                 "invoice_data": {
-                    "account_tax_ids": ["string"],
-                    "custom_fields": [
-                        {
-                            "name": "name",
-                            "value": "value",
-                        }
-                    ],
+                    "account_tax_ids": "",
+                    "custom_fields": "",
                     "description": "description",
                     "footer": "footer",
                     "issuer": {
                         "type": "account",
                         "account": "account",
                     },
-                    "metadata": {"foo": "string"},
-                    "rendering_options": {
-                        "amount_tax_display": "",
-                        "template": "template",
-                    },
+                    "metadata": "",
+                    "rendering_options": "",
                 },
             },
             metadata={"foo": "string"},
@@ -425,7 +403,6 @@ class TestAsyncPaymentLinks:
         )
         assert_matches_type(PaymentLinkCreateResponse, payment_link, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStripe) -> None:
         response = await async_client.payment_links.with_raw_response.create(
@@ -437,7 +414,6 @@ class TestAsyncPaymentLinks:
         payment_link = await response.parse()
         assert_matches_type(PaymentLinkCreateResponse, payment_link, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStripe) -> None:
         async with async_client.payment_links.with_streaming_response.create(

@@ -18,17 +18,15 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestInvoices:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Stripe) -> None:
         invoice = client.invoices.create()
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Stripe) -> None:
         invoice = client.invoices.create(
-            account_tax_ids=["string"],
+            account_tax_ids="",
             application_fee_amount=0,
             auto_advance=True,
             automatic_tax={
@@ -41,12 +39,7 @@ class TestInvoices:
             automatically_finalizes_at=0,
             collection_method="charge_automatically",
             currency="currency",
-            custom_fields=[
-                {
-                    "name": "name",
-                    "value": "value",
-                }
-            ],
+            custom_fields="",
             customer="customer",
             customer_account="customer_account",
             days_until_due=0,
@@ -54,13 +47,7 @@ class TestInvoices:
             default_source="default_source",
             default_tax_rates=["string"],
             description="description",
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            discounts="",
             due_date=0,
             effective_at=0,
             expand=["string"],
@@ -73,60 +60,29 @@ class TestInvoices:
                 "type": "account",
                 "account": "account",
             },
-            metadata={"foo": "string"},
+            metadata="",
             number="number",
             on_behalf_of="on_behalf_of",
             payment_settings={
-                "default_mandate": "string",
+                "default_mandate": "",
                 "payment_method_options": {
-                    "acss_debit": {
-                        "mandate_options": {"transaction_type": "business"},
-                        "verification_method": "automatic",
-                    },
-                    "bancontact": {"preferred_language": "de"},
-                    "card": {
-                        "installments": {
-                            "enabled": True,
-                            "plan": {
-                                "type": "bonus",
-                                "count": 0,
-                                "interval": "month",
-                            },
-                        },
-                        "request_three_d_secure": "any",
-                    },
-                    "customer_balance": {
-                        "bank_transfer": {
-                            "eu_bank_transfer": {"country": "country"},
-                            "type": "type",
-                        },
-                        "funding_type": "funding_type",
-                    },
+                    "acss_debit": "",
+                    "bancontact": "",
+                    "card": "",
+                    "customer_balance": "",
                     "konbini": "",
-                    "payto": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "purpose": "dependant_support",
-                        }
-                    },
+                    "payto": "",
                     "sepa_debit": "",
-                    "us_bank_account": {
-                        "financial_connections": {
-                            "filters": {"account_subcategories": ["checking"]},
-                            "permissions": ["balances"],
-                            "prefetch": ["balances"],
-                        },
-                        "verification_method": "automatic",
-                    },
+                    "us_bank_account": "",
                 },
-                "payment_method_types": ["ach_credit_transfer"],
+                "payment_method_types": "",
             },
             pending_invoice_items_behavior="exclude",
             rendering={
                 "amount_tax_display": "",
                 "pdf": {"page_size": "a4"},
                 "template": "template",
-                "template_version": 0,
+                "template_version": "",
             },
             shipping_cost={
                 "shipping_rate": "shipping_rate",
@@ -168,7 +124,7 @@ class TestInvoices:
                     "state": "state",
                 },
                 "name": "name",
-                "phone": "string",
+                "phone": "",
             },
             statement_descriptor="statement_descriptor",
             subscription="subscription",
@@ -179,7 +135,6 @@ class TestInvoices:
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Stripe) -> None:
         response = client.invoices.with_raw_response.create()
@@ -189,7 +144,6 @@ class TestInvoices:
         invoice = response.parse()
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Stripe) -> None:
         with client.invoices.with_streaming_response.create() as response:
@@ -201,13 +155,11 @@ class TestInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Stripe) -> None:
         invoice = client.invoices.list()
         assert_matches_type(SyncMyCursorIDPage[Invoice], invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Stripe) -> None:
         invoice = client.invoices.list(
@@ -235,7 +187,6 @@ class TestInvoices:
         )
         assert_matches_type(SyncMyCursorIDPage[Invoice], invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Stripe) -> None:
         response = client.invoices.with_raw_response.list()
@@ -245,7 +196,6 @@ class TestInvoices:
         invoice = response.parse()
         assert_matches_type(SyncMyCursorIDPage[Invoice], invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Stripe) -> None:
         with client.invoices.with_streaming_response.list() as response:
@@ -257,7 +207,6 @@ class TestInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_finalize(self, client: Stripe) -> None:
         invoice = client.invoices.finalize(
@@ -265,7 +214,6 @@ class TestInvoices:
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_finalize_with_all_params(self, client: Stripe) -> None:
         invoice = client.invoices.finalize(
@@ -275,7 +223,6 @@ class TestInvoices:
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_finalize(self, client: Stripe) -> None:
         response = client.invoices.with_raw_response.finalize(
@@ -287,7 +234,6 @@ class TestInvoices:
         invoice = response.parse()
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_finalize(self, client: Stripe) -> None:
         with client.invoices.with_streaming_response.finalize(
@@ -301,7 +247,6 @@ class TestInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_finalize(self, client: Stripe) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice` but received ''"):
@@ -315,17 +260,15 @@ class TestAsyncInvoices:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncStripe) -> None:
         invoice = await async_client.invoices.create()
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStripe) -> None:
         invoice = await async_client.invoices.create(
-            account_tax_ids=["string"],
+            account_tax_ids="",
             application_fee_amount=0,
             auto_advance=True,
             automatic_tax={
@@ -338,12 +281,7 @@ class TestAsyncInvoices:
             automatically_finalizes_at=0,
             collection_method="charge_automatically",
             currency="currency",
-            custom_fields=[
-                {
-                    "name": "name",
-                    "value": "value",
-                }
-            ],
+            custom_fields="",
             customer="customer",
             customer_account="customer_account",
             days_until_due=0,
@@ -351,13 +289,7 @@ class TestAsyncInvoices:
             default_source="default_source",
             default_tax_rates=["string"],
             description="description",
-            discounts=[
-                {
-                    "coupon": "coupon",
-                    "discount": "discount",
-                    "promotion_code": "promotion_code",
-                }
-            ],
+            discounts="",
             due_date=0,
             effective_at=0,
             expand=["string"],
@@ -370,60 +302,29 @@ class TestAsyncInvoices:
                 "type": "account",
                 "account": "account",
             },
-            metadata={"foo": "string"},
+            metadata="",
             number="number",
             on_behalf_of="on_behalf_of",
             payment_settings={
-                "default_mandate": "string",
+                "default_mandate": "",
                 "payment_method_options": {
-                    "acss_debit": {
-                        "mandate_options": {"transaction_type": "business"},
-                        "verification_method": "automatic",
-                    },
-                    "bancontact": {"preferred_language": "de"},
-                    "card": {
-                        "installments": {
-                            "enabled": True,
-                            "plan": {
-                                "type": "bonus",
-                                "count": 0,
-                                "interval": "month",
-                            },
-                        },
-                        "request_three_d_secure": "any",
-                    },
-                    "customer_balance": {
-                        "bank_transfer": {
-                            "eu_bank_transfer": {"country": "country"},
-                            "type": "type",
-                        },
-                        "funding_type": "funding_type",
-                    },
+                    "acss_debit": "",
+                    "bancontact": "",
+                    "card": "",
+                    "customer_balance": "",
                     "konbini": "",
-                    "payto": {
-                        "mandate_options": {
-                            "amount": 0,
-                            "purpose": "dependant_support",
-                        }
-                    },
+                    "payto": "",
                     "sepa_debit": "",
-                    "us_bank_account": {
-                        "financial_connections": {
-                            "filters": {"account_subcategories": ["checking"]},
-                            "permissions": ["balances"],
-                            "prefetch": ["balances"],
-                        },
-                        "verification_method": "automatic",
-                    },
+                    "us_bank_account": "",
                 },
-                "payment_method_types": ["ach_credit_transfer"],
+                "payment_method_types": "",
             },
             pending_invoice_items_behavior="exclude",
             rendering={
                 "amount_tax_display": "",
                 "pdf": {"page_size": "a4"},
                 "template": "template",
-                "template_version": 0,
+                "template_version": "",
             },
             shipping_cost={
                 "shipping_rate": "shipping_rate",
@@ -465,7 +366,7 @@ class TestAsyncInvoices:
                     "state": "state",
                 },
                 "name": "name",
-                "phone": "string",
+                "phone": "",
             },
             statement_descriptor="statement_descriptor",
             subscription="subscription",
@@ -476,7 +377,6 @@ class TestAsyncInvoices:
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStripe) -> None:
         response = await async_client.invoices.with_raw_response.create()
@@ -486,7 +386,6 @@ class TestAsyncInvoices:
         invoice = await response.parse()
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStripe) -> None:
         async with async_client.invoices.with_streaming_response.create() as response:
@@ -498,13 +397,11 @@ class TestAsyncInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncStripe) -> None:
         invoice = await async_client.invoices.list()
         assert_matches_type(AsyncMyCursorIDPage[Invoice], invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStripe) -> None:
         invoice = await async_client.invoices.list(
@@ -532,7 +429,6 @@ class TestAsyncInvoices:
         )
         assert_matches_type(AsyncMyCursorIDPage[Invoice], invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStripe) -> None:
         response = await async_client.invoices.with_raw_response.list()
@@ -542,7 +438,6 @@ class TestAsyncInvoices:
         invoice = await response.parse()
         assert_matches_type(AsyncMyCursorIDPage[Invoice], invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStripe) -> None:
         async with async_client.invoices.with_streaming_response.list() as response:
@@ -554,7 +449,6 @@ class TestAsyncInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_finalize(self, async_client: AsyncStripe) -> None:
         invoice = await async_client.invoices.finalize(
@@ -562,7 +456,6 @@ class TestAsyncInvoices:
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_finalize_with_all_params(self, async_client: AsyncStripe) -> None:
         invoice = await async_client.invoices.finalize(
@@ -572,7 +465,6 @@ class TestAsyncInvoices:
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_finalize(self, async_client: AsyncStripe) -> None:
         response = await async_client.invoices.with_raw_response.finalize(
@@ -584,7 +476,6 @@ class TestAsyncInvoices:
         invoice = await response.parse()
         assert_matches_type(Invoice, invoice, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_finalize(self, async_client: AsyncStripe) -> None:
         async with async_client.invoices.with_streaming_response.finalize(
@@ -598,7 +489,6 @@ class TestAsyncInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_finalize(self, async_client: AsyncStripe) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice` but received ''"):
